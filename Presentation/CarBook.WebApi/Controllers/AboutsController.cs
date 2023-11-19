@@ -1,6 +1,7 @@
 using CarBook.Application.Features.CQRS.Commands.AboutCommands;
 using CarBook.Application.Features.CQRS.Handlers.About;
 using CarBook.Application.Features.CQRS.Queries.About;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,7 @@ namespace CarBook.WebApi.Controllers
             var abouts = await _getAboutsQueryHandler.Handle();
             return Ok(abouts);
         }
+        
         
         [HttpGet("{id}")]
         
