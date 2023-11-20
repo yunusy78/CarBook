@@ -32,6 +32,7 @@ public class UpdateCarCommandHandler
         car.Luggage = request.Luggage;
         car.Transmission = request.Transmission;
         car.ImageUrl = request.ImageUrl;
+        car.CategoryId = request.CategoryId;
         await _repository.UpdateAsync(car);
     }
 }

@@ -36,6 +36,10 @@ public class Car
     
     public string Fuel { get; set; }
     
+    public Category Category { get; set; }
+    
+    public int CategoryId { get; set; }
+    
     public List<CarFeature> CarFeatures { get; set; }
     
     public List<CarDescription> CarDescriptions { get; set; }

@@ -30,5 +30,7 @@ public class UpdateCarCommand
     
     public int Transmission { get; set; }
     
+    public int CategoryId { get; set; }
+    
     public string Fuel { get; set; }
 }

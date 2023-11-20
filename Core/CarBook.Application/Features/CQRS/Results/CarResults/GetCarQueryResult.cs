@@ -12,6 +12,8 @@ public class GetCarQueryResult
     
     public int Year { get; set; }
     
+    public int CategoryId { get; set; }
+    
     public string Color { get; set; }
     
     public string ImageUrl { get; set; }

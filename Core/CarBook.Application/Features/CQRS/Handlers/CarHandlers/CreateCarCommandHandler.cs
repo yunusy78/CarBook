@@ -31,7 +31,9 @@ public class CreateCarCommandHandler
             Transmission = request.Transmission,
             Luggage = request.Luggage,
             Doors = request.Doors,
-            ImageUrl = request.ImageUrl
+            ImageUrl = request.ImageUrl,
+            CategoryId = request.CategoryId
+            
         };
         
         await _repository.AddAsync(car);

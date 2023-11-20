@@ -12,6 +12,8 @@ public class GetCarWithBrandQueryResult
     
     public int LocationId { get; set; }
     
+    public int CategoryId { get; set; }
+    
     public int Year { get; set; }
     
     public string Color { get; set; }

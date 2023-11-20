@@ -27,8 +27,11 @@ public class CarBookDbContext : DbContext
     public DbSet<Service> Services { get; set; }
     public DbSet<Banner> Banners { get; set; }
     public DbSet<Category> Categories { get; set; }
-  
-
     
+    public DbSet<Blog> Blogs { get; set; }
+    
+    public DbSet<Author> Authors { get; set; }
+    
+    public DbSet<BlogCategory> BlogCategories { get; set; }
     
 }

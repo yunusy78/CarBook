@@ -35,7 +35,8 @@ public class GetCarQueryHandler
             Doors = car.Doors,
             Luggage = car.Luggage,
             Transmission = car.Transmission,
-            ImageUrl = car.ImageUrl
+            ImageUrl = car.ImageUrl,
+            CategoryId = car.CategoryId
             
         }).ToList();
         

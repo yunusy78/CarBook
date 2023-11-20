@@ -29,4 +29,6 @@ public class CreateCarCommand
     public int Transmission { get; set; }
     
     public string Fuel { get; set; }
+    
+    public int CategoryId { get; set; }
 }
