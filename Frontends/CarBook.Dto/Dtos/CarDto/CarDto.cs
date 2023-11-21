@@ -1,7 +1,8 @@
-﻿namespace CarBook.Application.Features.CQRS.Results.CarResults;
+﻿namespace CarBook.Dto.Dtos.CarDto;
 
-public class GetCarWithBrandQueryResult
+public class CarDto
 {
+    
     public int CarId { get; set; }
     
     public int BrandId { get; set; }
@@ -37,4 +38,6 @@ public class GetCarWithBrandQueryResult
     public int Transmission { get; set; }
     
     public string Fuel { get; set; }
+
+    
 }

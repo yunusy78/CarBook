@@ -26,6 +26,7 @@ public class GetTestimonialQueryHandler : IRequestHandler<GetTestimonialQuery, L
             Name = x.Name,
             Description = x.Description,
             ImageUrl = x.ImageUrl,
+            Title = x.Title
             
         }).ToList();
         return result;

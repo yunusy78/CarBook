@@ -35,7 +35,8 @@ public class GetCarWithBrandQueryHandler
             Luggage = car.Luggage,
             Transmission = car.Transmission,
             ImageUrl = car.ImageUrl,
-            CategoryId = car.CategoryId
+            CategoryId = car.CategoryId,
+            CategoryName = car.Category.Name
             
         }).ToList();
         

@@ -22,6 +22,7 @@ public class UpdateTestimonialCommandHandler : IRequestHandler<UpdateTestimonial
         testimonial.Name = request.Name;
       testimonial.Description = request.Description;
         testimonial.ImageUrl = request.ImageUrl;
+        testimonial.Title = request.Title;
       await _repository.UpdateAsync(testimonial);
     }
 }
