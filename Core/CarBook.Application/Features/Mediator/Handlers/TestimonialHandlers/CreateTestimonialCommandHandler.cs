@@ -22,6 +22,7 @@ public class CreateTestimonialCommandHandler : IRequestHandler<CreateTestimonial
             Name = request.Name,
             Description = request.Description,
             ImageUrl = request.ImageUrl,
+            Title = request.Title
             
         };
         await _repository.AddAsync(testimonial);

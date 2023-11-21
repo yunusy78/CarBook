@@ -1,8 +1,7 @@
-﻿namespace CarBook.Application.Features.Mediator.Results.TestimonialResults;
+﻿namespace CarBook.Dto.Dtos.TestimonialDto;
 
-public class GetTestimonialByIdQueryResult
+public class TestimonialDto
 {
-    
     public int TestimonialId { get; set; }
     
     public string Name { get; set; }
@@ -10,6 +9,6 @@ public class GetTestimonialByIdQueryResult
     public string Description { get; set; }
     
     public string ImageUrl { get; set; }
-    
     public string Title { get; set; }
+    
 }

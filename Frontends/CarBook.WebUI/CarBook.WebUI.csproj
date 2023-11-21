@@ -19,6 +19,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="X.PagedList" Version="9.0.0-prerelease" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,6 +35,14 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Frontends\CarBook.Dto\CarBook.Dto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Car\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Car\Index.cshtml" />
     </ItemGroup>
 
 </Project>
