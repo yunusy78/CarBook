@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 
 namespace CarBook.WebUI.ViewComponents.FooterComponents;
 
-public class FooterLayoutViewComponents : ViewComponent
+public class AddressViewComponent : ViewComponent
 {
     private readonly IHttpClientFactory _clientFactory;
     private readonly IConfiguration _configuration;
     
-    public FooterLayoutViewComponents(IHttpClientFactory clientFactory, IConfiguration configuration)
+    public AddressViewComponent(IHttpClientFactory clientFactory, IConfiguration configuration)
     {
         _clientFactory = clientFactory;
         _configuration = configuration;

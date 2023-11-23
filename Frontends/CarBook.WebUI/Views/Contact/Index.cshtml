@@ -1,0 +1,55 @@
+﻿@model CarBook.Dto.Dtos.ContactDto.ContactDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+@await Html.PartialAsync("/Views/UserLayoutPartialView/_SubHeaderPartialView.cshtml")
+<section class="ftco-section contact-section">
+  <div class="container">
+    <div class="row d-flex mb-5 contact-info">
+      @await Component.InvokeAsync("Address")
+      <div class="col-md-8 block-9 mb-md-5">
+        <form asp-action="Index" asp-controller="Contact" class="bg-light p-5 contact-form">
+          <div class="form-group">
+            <input type="text" asp-for="Name" class="form-control" placeholder="Ditt Navn">
+          </div>
+          <div class="form-group">
+            <input type="text" asp-for="Email" class="form-control" placeholder="Din E-Post">
+          </div>
+          <div class="form-group">
+            <input type="text" asp-for="Subject" class="form-control" placeholder="Emnet">
+          </div>
+          <div class="form-group">
+            <textarea asp-for="Message" id="" cols="30" rows="7" class="form-control" placeholder="Melding"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Sende Melding" class="btn btn-primary py-3 px-5">
+          </div>
+        </form>
+        <div class="form-group">
+            @if (!string.IsNullOrEmpty(ViewBag.Success))
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.Success
+                </div>
+            }
+        
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <div class="alert alert-warning" role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+        </div>
+      </div>
+    </div>
+    <div class="map mt-10 pt-md-10">
+      <h5>Kart</h5>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32069.884163608635!2d8.772242264662576!3d58.45837286104283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463dbce36c2d3a01%3A0x9519dd6b7c5b9606!2sArendal%2C%20Norway!5e0!3m2!1sen!2sno!4v1629411208493!5m2!1sen!2sno"
+              width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+          
+    </div>
+  </div>
+</section>
