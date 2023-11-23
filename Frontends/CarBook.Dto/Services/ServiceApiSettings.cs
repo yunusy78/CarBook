@@ -11,6 +11,18 @@ public class ServiceApiSettings
     
     public ServiceApi Car { get; set; }
     
+    public ServiceApi Category { get; set; }
+    
+    public ServiceApi Brand { get; set; }
+    
+    public ServiceApi Location { get; set; }
+    
+    public ServiceApi Contact { get; set; }
+    
+    public ServiceApi Footer { get; set; }
+    
+    public ServiceApi Banner { get; set; }
+    
 }
 
 
