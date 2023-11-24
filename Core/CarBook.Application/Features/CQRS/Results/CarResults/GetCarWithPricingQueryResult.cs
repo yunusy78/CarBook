@@ -1,8 +1,7 @@
-﻿namespace CarBook.Dto.Dtos.CarDto;
+﻿namespace CarBook.Application.Features.CQRS.Results.CarResults;
 
-public class CarDto
+public class GetCarWithPricingQueryResult
 {
-    
     public int CarId { get; set; }
     
     public int BrandId { get; set; }
@@ -41,6 +40,4 @@ public class CarDto
     
     public List<string> PricingNames { get; set; } 
     public List<decimal> PricingAmounts { get; set; }
-
-    
 }

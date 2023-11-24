@@ -21,6 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<CarBookDbContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
@@ -44,7 +45,9 @@ builder.Services.AddScoped<GetCarByIdQueryHandler>();
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<DeleteCarCommandHandler>();
+builder.Services.AddScoped<GetCarWithPricingWithQueryHandler>();
 builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
+builder.Services.AddScoped<GetCarCategoryCountQueryHandler>();
 
 builder.Services.AddScoped<GetContactQueryHandler>();
 builder.Services.AddScoped<GetContactByIdQueryHandler>();

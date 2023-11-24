@@ -23,6 +23,10 @@ public class ServiceApiSettings
     
     public ServiceApi Banner { get; set; }
     
+    public ServiceApi Blog { get; set; }
+    
+    public ServiceApi BlogCategory { get; set; }
+    
 }
 
 
