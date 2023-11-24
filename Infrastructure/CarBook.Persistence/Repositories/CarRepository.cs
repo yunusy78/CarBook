@@ -19,4 +19,23 @@ public class CarRepository : ICarRepository
         var cars = await _context.Cars.Include(x=>x.Brand).Include(y=>y.Category).ToListAsync();
         return cars;
     }
+
+    public async Task<List<Car>> GetCarWithPriceAsync()
+    {
+        var cars = await _context.Cars
+            .Include(x => x.Brand)
+            .Include(y => y.Category)
+            .Include(z => z.CarPricings)
+            .ThenInclude(f => f.Pricing)
+            .ToListAsync();
+
+        return cars;
+    }
+    
+    public Dictionary<string, int> GetCarCountByCategory()
+    {
+        var cars = _context.Cars.Include(x => x.Category).ToList();
+        var carCountByCategory = cars.GroupBy(x => x.Category.Name).ToDictionary(x => x.Key, y => y.Count());
+        return carCountByCategory;
+    }
 }

@@ -19,15 +19,12 @@ namespace CarBook.WebApi.Controllers
         private readonly UpdateCarCommandHandler _updateCarCommandHandler;
         private readonly DeleteCarCommandHandler _deleteCarCommandHandler;
         private readonly GetCarWithBrandQueryHandler _getCarWithBrandQueryHandler;
+        private readonly GetCarWithPricingWithQueryHandler _getCarWithPricingWithQueryHandler;
+        private readonly GetCarCategoryCountQueryHandler _getCarCategoryCountQueryHandler;
         
         
         
-        public CarsController(GetCarQueryHandler getCarQueryHandler, 
-            GetCarByIdQueryHandler getCarByIdQueryHandler, 
-            CreateCarCommandHandler createCarCommandHandler, 
-            UpdateCarCommandHandler updateCarCommandHandler, 
-            DeleteCarCommandHandler deleteCarCommandHandler, 
-            GetCarWithBrandQueryHandler getCarWithBrandQueryHandler)
+        public CarsController(GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, DeleteCarCommandHandler deleteCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetCarWithPricingWithQueryHandler getCarWithPricingWithQueryHandler, GetCarCategoryCountQueryHandler getCarCategoryCountQueryHandler)
         {
             _getCarQueryHandler = getCarQueryHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -35,8 +32,11 @@ namespace CarBook.WebApi.Controllers
             _updateCarCommandHandler = updateCarCommandHandler;
             _deleteCarCommandHandler = deleteCarCommandHandler;
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
+            _getCarWithPricingWithQueryHandler = getCarWithPricingWithQueryHandler;
+            _getCarCategoryCountQueryHandler = getCarCategoryCountQueryHandler;
         }
-       
+        
+        
         
         [HttpGet]
         
@@ -79,6 +79,23 @@ namespace CarBook.WebApi.Controllers
             await _deleteCarCommandHandler.Handle(request);
             return Ok("Car deleted successfully");
         }
+        
+        [HttpGet("withpricing")]
+        
+        public async Task<IActionResult> GetWithPricing()
+        {
+            var cars = await _getCarWithPricingWithQueryHandler.Handle();
+            return Ok(cars);
+        }
+        
+        [HttpGet("withCategoryCount")]
+        
+        public async Task<IActionResult> GetWithCategoryCount()
+        {
+            var cars = await _getCarCategoryCountQueryHandler.Handle();
+            return Ok(cars);
+        }
+        
         
     }
 }

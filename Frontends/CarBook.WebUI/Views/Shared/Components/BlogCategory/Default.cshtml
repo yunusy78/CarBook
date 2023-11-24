@@ -1,0 +1,12 @@
+﻿@model List<CarBook.Dto.Dtos.BlogCategory.BlogCategoryCountDto>?
+
+
+<div class="sidebar-box ftco-animate">
+    <div class="categories">
+        <h3>Blogg Kategorier</h3>
+        @foreach(var blogCategory in Model)
+        {
+            <li><a href="#">@blogCategory.CategoryName<span><strong>(@blogCategory.Count)</strong></span></a></li>
+        }
+    </div>
+</div>

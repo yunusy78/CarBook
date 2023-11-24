@@ -1,0 +1,63 @@
+﻿@model List<CarBook.Dto.Dtos.CarDto.CarDto>?
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+@await Html.PartialAsync("/Views/UserLayoutPartialView/_SubHeaderPartialView.cshtml")
+<section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="car-list">
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>&nbsp;</th>
+						        <th class="bg-primary heading">Timepris</th>
+                                <th class="bg-dark heading">Dagspris</th>
+                                <th class="bg-black heading">Månedpris</th>
+
+						      </tr>
+						    </thead>
+						    <tbody>
+						    @foreach(var item in Model)
+						    {
+							    <tr class="">
+							    <td class="car-image">
+								    <div class="img" style="background-image:url(/@item.ImageUrl);"></div></td>
+							    <td class="product-name">
+								    <h3>@item.BrandName @item.Model</h3>
+								    <p class="mb-0 rated">
+									    <span>rated:</span>
+									    <span class="ion-ios-star"></span>
+									    <span class="ion-ios-star"></span>
+									    <span class="ion-ios-star"></span>
+									    <span class="ion-ios-star"></span>
+									    <span class="ion-ios-star"></span>
+								    </p>
+							    </td>
+                             @foreach (var item2 in @item.PricingAmounts)
+                             {
+	                             <td class="price">
+		                             <p class="btn-custom"><a href="#">Leie ut Bil</a></p>
+		                             <div class="price-rate">
+			                             <h3>
+				                            <span>NOK</span><span class="num"><small class="currency"></small> @item2</span>
+				                             <span class="per"></span>
+			                             </h3>
+			                             <span class="subheading">NOK 3/timepris drivstoffavgift</span>
+		                             </div>
+	                             </td>
+                             } 
+								    
+						    </tr><!-- END TR-->
+						    }
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+			</div>
+		</section>
