@@ -1,0 +1,66 @@
+﻿@model CarBook.Dto.Dtos.CommentDto.CommentDto
+
+<div class="comment-form-wrap pt-5">
+    <h3 class="mb-5">Legg igjen en kommentar</h3>
+    <form id="commentForm" class="p-5 bg-light">
+        <div class="form-group">
+            <label for="name">Navn *</label>
+            <input asp-for="Name" type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <input asp-for="BlogId" type="hidden" value="@Model.BlogId" class="form-control" id="blogId">
+        </div>
+        <div class="form-group">
+            <label for="website">Description</label>
+            <input asp-for="Description" class="form-control" id="description">
+        </div>
+        <div class="form-group">
+            <label for="message">Melding</label>
+            <textarea asp-for="Message" id="message" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="button" id="submitCommentBtn" value="Post en kommentar" class="btn py-3 px-4 btn-primary">
+        </div>
+    </form>
+    <div id="successMessage" style="display: none; margin-top: 10px; color: green;">Kommentar har lagt ut</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+   $(document).ready(function () {
+       $('#submitCommentBtn').click(function () {
+           // Form verilerini al
+           var formData = {
+               Name: $('#name').val(),
+               Description: $('#description').val(),
+               Message: $('#message').val(),
+               BlogId: $('#blogId').val()
+           };
+   
+           // AJAX isteği gönder
+           $.ajax({
+               type: 'POST',
+               url: '/Comment/CreateComment', // Doğru URL'yi ayarlayın
+               contentType: 'application/json',
+               data: JSON.stringify(formData),
+               success: function (response) {
+                   // Başarılı yanıt durumunda yapılacaklar
+                   console.log(response);
+                   // Form değerlerini temizle
+                   $('#name').val('');
+                   $('#description').val('');
+                   $('#message').val('');
+   
+                   // Başarı mesajını göster
+                   $('#successMessage').show();
+   
+                   // Sayfayı yeniden yükle
+                   location.reload();
+               },
+               error: function (error) {
+                   // Hata durumunda yapılacaklar
+                   console.log(error);
+               }
+           });
+       });
+   });
+</script>

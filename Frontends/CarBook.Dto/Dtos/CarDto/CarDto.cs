@@ -2,7 +2,11 @@
 
 public class CarDto
 {
-    
+    public CarDto(Dictionary<string, decimal> pricingData)
+    {
+        PricingData = pricingData;
+    }
+
     public int CarId { get; set; }
     
     public int BrandId { get; set; }
@@ -38,6 +42,8 @@ public class CarDto
     public int Transmission { get; set; }
     
     public string Fuel { get; set; }
+    
+    public Dictionary<string, decimal> PricingData { get; set; }
     
     public List<string> PricingNames { get; set; } 
     public List<decimal> PricingAmounts { get; set; }

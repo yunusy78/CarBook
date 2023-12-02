@@ -37,7 +37,8 @@ public class GetCarWithPricingWithQueryHandler
             CategoryId = car.CategoryId,
             CategoryName = car.Category.Name,
             PricingNames = car.CarPricings.Select(x=>x.Pricing.Name).ToList(),
-            PricingAmounts = car.CarPricings.Select(x=>x.Price).ToList()
+            PricingAmounts = car.CarPricings.Select(x=>x.Price).ToList(),
+            PricingData = car.CarPricings.ToDictionary(x=>x.Pricing.Name, x=>x.Price)
 
         }).ToList();
 

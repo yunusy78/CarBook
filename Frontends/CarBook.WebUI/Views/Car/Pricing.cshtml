@@ -27,25 +27,25 @@
 							    <tr class="">
 							    <td class="car-image">
 								    <div class="img" style="background-image:url(/@item.ImageUrl);"></div></td>
-							    <td class="product-name">
-								    <h3>@item.BrandName @item.Model</h3>
-								    <p class="mb-0 rated">
-									    <span>rated:</span>
-									    <span class="ion-ios-star"></span>
-									    <span class="ion-ios-star"></span>
-									    <span class="ion-ios-star"></span>
-									    <span class="ion-ios-star"></span>
-									    <span class="ion-ios-star"></span>
-								    </p>
-							    </td>
-                             @foreach (var item2 in @item.PricingAmounts)
+								    <td class="product-name">
+									    <h3>@item.BrandName @item.Model</h3>
+									    <p class="mb-0 rated">
+										    <span>rated:</span>
+										    <span class="ion-ios-star"></span>
+										    <span class="ion-ios-star"></span>
+										    <span class="ion-ios-star"></span>
+										    <span class="ion-ios-star"></span>
+										    <span class="ion-ios-star"></span>
+									    </p>
+								    </td>
+                             @foreach (var item2 in @item.PricingData)
                              {
 	                             <td class="price">
 		                             <p class="btn-custom"><a href="#">Leie ut Bil</a></p>
 		                             <div class="price-rate">
 			                             <h3>
-				                            <span>NOK</span><span class="num"><small class="currency"></small> @item2</span>
-				                             <span class="per"></span>
+				                            <span>NOK</span><span class="num"><small class="currency"></small> @item2.Value</span>
+				                             <span class="per">@item2.Key</span>
 			                             </h3>
 			                             <span class="subheading">NOK 3/timepris drivstoffavgift</span>
 		                             </div>

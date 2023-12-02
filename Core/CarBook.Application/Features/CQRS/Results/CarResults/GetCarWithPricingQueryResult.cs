@@ -2,6 +2,11 @@
 
 public class GetCarWithPricingQueryResult
 {
+    public GetCarWithPricingQueryResult()
+    {
+        PricingData = new Dictionary<string, decimal>();
+    }
+
     public int CarId { get; set; }
     
     public int BrandId { get; set; }
@@ -38,6 +43,7 @@ public class GetCarWithPricingQueryResult
     
     public string Fuel { get; set; }
     
+    public Dictionary<string, decimal> PricingData { get; set; }
     public List<string> PricingNames { get; set; } 
     public List<decimal> PricingAmounts { get; set; }
 }

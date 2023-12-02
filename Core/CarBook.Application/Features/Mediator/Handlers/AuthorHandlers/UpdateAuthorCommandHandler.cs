@@ -22,6 +22,8 @@ public class UpdateAuthorCommandHandler : IRequestHandler<UpdateAuthorCommand>
         author.FirstName = request.FirstName;
         author.LastName = request.LastName;
         author.Email = request.Email;
+        author.ImageUrl = request.ImageUrl;
+        author.Description = request.Description;
       await _repository.UpdateAsync(author);
     }
 }

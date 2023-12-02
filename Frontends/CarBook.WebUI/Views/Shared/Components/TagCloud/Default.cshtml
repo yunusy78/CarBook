@@ -1,0 +1,10 @@
+﻿@model System.Collections.Generic.List<CarBook.Dto.Dtos.TagCloud.TagCloudDto>?
+
+<div class="tag-widget post-tag-container mb-5 mt-5">
+    <div class="tagcloud">
+        @foreach(var tag in Model)
+        {
+            <a href="#" class="tag-cloud-link">@tag.Tag</a>
+        }
+    </div>
+</div>
