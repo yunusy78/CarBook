@@ -25,6 +25,8 @@ public class GetAuthorByIdQueryHandler : IRequestHandler<GetAuthorByIdQuery, Get
             AuthorId = author.AuthorId,
             FirstName = author.FirstName,
             LastName = author.LastName,
+            ImageUrl = author.ImageUrl,
+            Description = author.Description,
             Email = author.Email,
             
         };

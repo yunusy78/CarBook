@@ -18,7 +18,7 @@ public class UpdateBlogCommandHandler : IRequestHandler<UpdateBlogCommand>
     
     public async Task Handle(UpdateBlogCommand request, CancellationToken cancellationToken)
     {
-      var blog = await _repository.GetByIdAsync(request.BlogId);
+        var blog = await _repository.GetByIdAsync(request.BlogId);
         blog.Title = request.Title;
         blog.Description = request.Description;
         blog.ImageUrl = request.ImageUrl;

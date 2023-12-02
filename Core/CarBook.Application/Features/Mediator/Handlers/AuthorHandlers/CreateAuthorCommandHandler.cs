@@ -21,6 +21,8 @@ public class CreateAuthorCommandHandler : IRequestHandler<CreateAuthorCommand>
         {
             FirstName = request.FirstName,
             LastName = request.LastName,
+            ImageUrl = request.ImageUrl,
+            Description = request.Description,
             Email = request.Email,
            
             

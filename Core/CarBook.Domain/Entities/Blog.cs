@@ -15,4 +15,8 @@ public class Blog
     public int CategoryId { get; set; }
     public BlogCategory Category { get; set; }
     
+    public List<TagCloud> TagClouds { get; set; }
+    
+    public List<Comment> Comments { get; set; }
+    
 }

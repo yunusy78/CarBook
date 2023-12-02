@@ -1,4 +1,5 @@
-﻿using CarBook.Domain.Entities;
+﻿using CarBook.Domain.DTOs;
+using CarBook.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarBook.Persistence.Context;
@@ -9,8 +10,8 @@ public class CarBookDbContext : DbContext
    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CarBook;Trusted_Connection=True; TrustServerCertificate=True;MultipleActiveResultSets=true");
+        
     }
-
     public DbSet<Car> Cars { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Pricing> Pricings { get; set; }
@@ -33,5 +34,9 @@ public class CarBookDbContext : DbContext
     public DbSet<Author> Authors { get; set; }
     
     public DbSet<BlogCategory> BlogCategories { get; set; }
+    
+    public DbSet<TagCloud> TagClouds { get; set; }
+    
+    public DbSet<Comment> Comments { get; set; }
     
 }

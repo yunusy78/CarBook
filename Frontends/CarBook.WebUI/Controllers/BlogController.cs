@@ -39,6 +39,7 @@ public class BlogController : Controller
     {
         ViewBag.v1 = "Blogg";
         ViewBag.v2 = "Her kan du lese om våre nye blogginnlegg";
+        ViewBag.BlogId = id;
         var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
         var client = _clientFactory.CreateClient();
         var response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Blog.Path}/{id}");

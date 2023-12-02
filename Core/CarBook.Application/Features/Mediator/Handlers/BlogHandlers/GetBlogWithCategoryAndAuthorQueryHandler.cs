@@ -29,6 +29,7 @@ public class GetBlogWithCategoryAndAuthorQueryHandler : IRequestHandler<GetBlogW
             CoverImage = x.CoverImage,
             Created = x.Created,
             Updated = x.Updated,
+            AuthorImageUrl = x.Author.ImageUrl,
             AuthorName = x.Author.FirstName + " " + x.Author.LastName,
             CategoryName = x.Category.Name
         }).ToList();

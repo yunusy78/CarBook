@@ -34,6 +34,8 @@ public class GetBlogByIdWithCategoryAndAuthorQueryHandler : IRequestHandler<GetB
             CategoryId = blog.CategoryId,
             CoverImage = blog.CoverImage,
             AuthorName = blog.Author.FirstName + " " + blog.Author.LastName,
+            AuthorImageUrl = blog.Author.ImageUrl,
+            AuthorDescription = blog.Author.Description,
             CategoryName = blog.Category.Name
         };
         return result;

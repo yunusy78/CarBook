@@ -1,0 +1,11 @@
+﻿@model System.Collections.Generic.List<CarBook.Dto.Dtos.TagCloud.TagCloudDto>?
+
+<div class="sidebar-box ftco-animate">
+              <h3>Emneord-sky</h3>
+    <div class="tagcloud">
+        @foreach(var tag in Model)
+        {
+            <a href="#" class="tag-cloud-link">@tag.Tag</a>
+        }
+    </div>
+            </div>

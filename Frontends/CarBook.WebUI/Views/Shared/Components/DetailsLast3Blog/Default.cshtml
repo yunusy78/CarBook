@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.SignalR.Protocol
 @model System.Collections.Generic.List<CarBook.Dto.Dtos.BlogDto.BlogDto>?
 <div class="sidebar-box ftco-animate">
-  <h3>Recent Blog</h3>
+  <h3>De nyeste blogginnleggene</h3>
   @foreach (var item in Model)
 {
   <div class="block-21 mb-4 d-flex">
@@ -9,7 +9,7 @@
     <div class="text">
       <h3 class="heading"><a href="#">@item.Title</a></h3>
       <div class="meta">
-        <div><a href="#"><span class="icon-calendar"></span> @item.Created.ToShortDateString()</a></div>
+        <div><a href="#"><span class="icon-calendar"></span>  @item.Created.ToShortDateString()</a></div>
         <div><a href="#"><span class="icon-person"></span> @item.AuthorName</a></div>
         <div><a href="#"><span class="icon-folder"></span> @item.CategoryName</a></div>
       </div>
