@@ -1,0 +1,96 @@
+﻿@model List<CarBook.Dto.Dtos.CarDto.CarDto>?
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+ 
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+
+<div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18">Datatables</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">BilList</li>
+                                    </ol>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>  
+
+<div class="row">  
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Bil</h4>
+                <p class="card-subtitle mb-4"></p>
+
+                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                    <thead>
+                       <tr>
+                           <th>Bilde</th>
+                           <th>Bil Id</th>
+                                <th>Merke</th>
+                                <th>Modell</th>
+                                <th>Lokasjon</th>
+                                <th>Kategori</th>
+                                <th>År</th>
+                                <th>Farge</th>
+                                <th>Pris</th>
+                                <th>Kjørelengde</th>
+                                <th>Antall seter</th>
+                                <th>Baggasje</th>
+                                <th>Dører</th>
+                                
+                                  <th>Rediger</th>
+                                <th>Slett</th>
+                           <th>Detaljer</th>
+                           <th>Tilgjengelig</th>
+                           <th>Gir</th>
+                                <th>Drivstoff</th>
+                            </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td><img src="/@item.ImageUrl" width="50" height="50"></td>
+                            <td>@item.CarId</td>
+                            <td>@item.BrandName</td>
+                            <td>@item.Model</td>
+                            <td>@item.LocationId</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Year</td>
+                            <td>@item.Color</td>
+                            <td>@item.Price</td>
+                            <td>@item.Mileage</td>
+                            <td>@item.Seats</td>
+                            <td>@item.Luggage</td>
+                            <td>@item.Doors</td>
+                            
+                            <td><a href="#" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
+                            <td><a href="#" class="btn btn-outline-danger"><i class="mdi mdi-delete"></i> Slett</a> </td>
+                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                            <td>@item.IsAvailable</td>
+                            <td>@item.Transmission</td>
+                            <td>@item.Fuel</td>
+                        </tr>}
+                    </tbody>
+                </table>
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+</div>
+            </div>

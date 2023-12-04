@@ -27,6 +27,8 @@ public class ServiceApiSettings
     
     public ServiceApi BlogCategory { get; set; }
     
+    public ServiceApi CarCategory { get; set; }
+    
     public ServiceApi TagCloud { get; set; }
     
     public ServiceApi Comment { get; set; }
