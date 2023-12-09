@@ -1,0 +1,86 @@
+﻿@model List<CarBook.Dto.Dtos.FooterDto.FooterDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-content">
+                <div class="container-fluid">
+
+
+<div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18"></h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">Bunntekst</li>
+                                    </ol>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>  
+
+<div class="row">  
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Bunntekst</h4>
+                <p class="card-subtitle mb-4"></p>
+
+                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tittel</th>
+                        <th>E-Post</th>
+                        <th>Addressen</th>
+                        <th>Beskrivelse</th>
+                        <th>Telefon</th>
+                        <th>Rediger</th>
+                        <th>Slett</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FooterId</td>
+                            <td>@item.Title</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td>@item.Phone</td>
+                            <td> <script>
+                var description = "@item.Description";
+                var first30Words = description.split(" ").slice(0, 15).join(" ");                                                                                     
+               document.write(first30Words);                                                                                
+                                        </script></td>
+                            <td><a href="/Admin/AdminFooter/Update/@item.FooterId" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
+                            <td><a href="/Admin/AdminFooter/Delete/@item.FooterId" class="btn btn-outline-danger" onclick="deleteItemWarning()"><i class="mdi mdi-delete"></i> Slett</a> </td>
+                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                        </tr>
+                        <script>
+                function deleteItemWarning() {
+                var confirmDelete = confirm("Advarsel! Denne handlingen vil slette elementet permanent. Er du sikker på at du vil fortsette?");
+                if (confirmDelete) {
+            // Brukeren bekreftet sletting, slettingsprosessen kan fortsette.
+                window.location.href = "/Admin/AdminFooter/Delete/@item.FooterId";
+                  }
+               }
+            </script>
+                    }
+                    </tbody>
+                </table>
+<a href="/Admin/AdminFooter/Create" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Legg en ny Bunnteks</a>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+</div>
+            </div>

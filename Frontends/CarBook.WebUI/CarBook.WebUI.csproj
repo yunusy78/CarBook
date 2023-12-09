@@ -56,9 +56,18 @@
       <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Create.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\AdminAuthor\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\AdminAuthor\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\AdminAuthor\Update.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\AdminAuthor\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminAuthor\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminAuthor\Update.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Update.cshtml" />
       <AdditionalFiles Include="Views\Car\Index.cshtml" />
     </ItemGroup>
 
@@ -68,6 +77,8 @@
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\Components\" />
       <Folder Include="wwwroot\ImageFile\About\" />
+      <Folder Include="wwwroot\ImageFile\Author\" />
+      <Folder Include="wwwroot\ImageFile\Banner\" />
       <Folder Include="wwwroot\ImageFile\Blog\" />
       <Folder Include="wwwroot\ImageFile\Car\" />
       <Folder Include="wwwroot\ImageFile\Service\" />
