@@ -33,6 +33,10 @@ public class ServiceApiSettings
     
     public ServiceApi Comment { get; set; }
     
+    public ServiceApi Feature { get; set; }
+    
+    public ServiceApi Author { get; set; }
+    
 }
 
 

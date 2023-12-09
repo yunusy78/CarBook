@@ -1,0 +1,73 @@
+﻿@model List<CarBook.Dto.Dtos.TagCloud.TagCloudDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-content">
+                <div class="container-fluid">
+<div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18"></h4>
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">Ordsky</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+<div class="row">  
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Ordsky</h4>
+                <p class="card-subtitle mb-4"></p>
+
+                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Stikkord</th>
+                        <th>Blogg Id</th>
+                        <th>Rediger</th>
+                        <th>Slett</th>
+                        
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TagCloudId</td>
+                            <td>@item.Tag</td>
+                            <td>@item.BlogId</td>
+                            <td><a href="/Admin/AdminTagCloud/Update/@item.TagCloudId" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
+                            <td><a href="/Admin/AdminTagCloud/Delete/@item.TagCloudId" class="btn btn-outline-danger" onclick="deleteItemWarning()"><i class="mdi mdi-delete"></i> Slett</a> </td>
+                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                        </tr>
+                        <script>
+                function deleteItemWarning() {
+                var confirmDelete = confirm("Advarsel! Denne handlingen vil slette elementet permanent. Er du sikker på at du vil fortsette?");
+                if (confirmDelete) {
+            // Brukeren bekreftet sletting, slettingsprosessen kan fortsette.
+                window.TagCloud.href = "/Admin/AdminTagCloud/Delete/@item.TagCloudId";
+                  }
+               }
+             </script>
+                    }
+                    </tbody>
+                </table>
+<a href="/Admin/AdminTagCloud/Create" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Legg et nytt stikkord</a>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+</div>
+            </div>

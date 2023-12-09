@@ -4,8 +4,6 @@
     ViewBag.Title = "title";
     Layout = "_AdminLayout";
 }
-
-<html>
 <head>
     <title>Legg til nytt produkt</title>
     <style>
@@ -17,120 +15,133 @@
         }
     </style>
 </head>
-<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 custom-form">
-            <h3 class="text-center">Legg til nytt Bil</h3>
+            <h3 class="text-center">Legg til ny Bil</h3>
             <form method="post" enctype="multipart/form-data" action="/Admin/AdminCar/Create">
                 @Html.AntiForgeryToken()
-                <div class="form-group">
-                    <label  asp-for="BrandId">Merke</label>
-                    @Html.DropDownListFor(x=>x.BrandId, (List<SelectListItem>)ViewBag.BrandList, new { @class = "form-control" })
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BrandId">Merke</label>
+                            @Html.DropDownListFor(x => x.BrandId, (List<SelectListItem>)ViewBag.BrandList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CategoryId">Kategori</label>
+                            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LocationId">Lokasjon</label>
+                            @Html.DropDownListFor(x => x.LocationId, (List<SelectListItem>)ViewBag.LocationList, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Model :</label>
+                            <input asp-for="Model" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kjørelengde :</label>
+                            <input asp-for="Mileage" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tilgjengelig :</label>
+                            <select asp-for="IsAvailable" class="form-control">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Drivstoff :</label>
+                            <select asp-for="Fuel" class="form-control">
+                                <option value="Elektrisk">Elektrisk</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Bensin" >Bensin</option>
+                                <option value="Hybrid" >Hybrid</option> 
+                                <option value="Gass" >Gass</option>
+                                <option value="Etanol" >Etanol</option>
+                                <option value="Hydrogen" >Hydrogen</option>
+                                <option value="Biodiesel" >Biodiesel</option>
+                                <option value="Plug-in Hybrid" >Plug-in Hybrid</option>
+                                <option value="Annet" >Annet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gir :</label>
+                            <select asp-for="Transmission" class="form-control">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Dør :</label>
+                            <select asp-for="Doors" class="form-control">
+                                <option value="5">5</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Antall Seter :</label>
+                            <select asp-for="Seats" class="form-control">
+                                <option value="2">2</option>
+                                <option value="5">5</option>
+                                <option value="7">7</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Farge :</label>
+                            <select asp-for="Color" class="form-control">
+                                <option value="Svart">Svart</option>
+                                <option value="Hvit">Hvit</option>
+                                <option value="Sølv">Sølv</option>
+                                <option value="Blå">Blå</option>
+                                <option value="Rød">Rød</option>
+                                <option value="Grønn">Grønn</option>
+                                <option value="Grå">Grå</option>
+                                <option value="Gull">Gull</option>
+                                <option value="Brun">Brun</option>
+                                <option value="Oransje">Oransje</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Prise :</label>
+                            <input asp-for="Price" class="form-control" placeholder="Pris" type="number">
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Bagasje :</label>
+                            <select asp-for="Luggage" class="form-control">
+                                <option value="1">Liten</option>
+                                <option value="2">Middels</option>
+                                <option value="3">Stor</option>
+                                <option value="4">Svært Stor</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>År :</label>
+                            <select asp-for="Year" class="form-control">
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label  asp-for="CategoryId">Kategori</label>
-                    @Html.DropDownListFor(x=>x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    <label  asp-for="LocationId">Lokasjon</label>
-                    @Html.DropDownListFor(x=>x.LocationId, (List<SelectListItem>)ViewBag.LocationList, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    <input asp-for="Model" class="form-control" placeholder="Model" required>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <input asp-for="Mileage" class="form-control" placeholder="Kjørelengde" required>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label>Tilgjengelig :</label>
-                    <select asp-for="IsAvailable" class="form-control">
-                        <option value="Til Salgs">True</option>
-                        <option value="Til Leie">False</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Drivstoff :</label>
-                    <select asp-for="Fuel" class="form-control">
-                        <option value="Elektrisk">Elektrisk</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Bensin" >Bensin</option>
-                        <option value="Hybrid" >Hybrid</option> 
-                        <option value="Gass" >Gass</option>
-                        <option value="Etanol" >Etanol</option>
-                        <option value="Hydrogen" >Hydrogen</option>
-                        <option value="Biodiesel" >Biodiesel</option>
-                        <option value="Plug-in Hybrid" >Plug-in Hybrid</option>
-                        <option value="Annet" >Annet</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Gir :</label>
-                    <select asp-for="Transmission" class="form-control">
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Dør :</label>
-                    <select asp-for="Doors" class="form-control">
-                        <option value="5">5</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                <label>Farge :</label>
-                <select asp-for="Color" class="form-control">
-                    <option value="Svart">Svart</option>
-                    <option value="Hvit">Hvit</option>
-                    <option value="Sølv">Sølv</option>
-                    <option value="Blå">Blå</option>
-                    <option value="Rød">Rød</option>
-                    <option value="Grønn">Grønn</option>
-                    <option value="Grå">Grå</option>
-                    <option value="Gull">Gull</option>
-                    <option value="Brun">Brun</option>
-                    <option value="Oransje">Oransje</option>
-                </select>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <input asp-for="Price" class="form-control" placeholder="Pris" type="number">
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label>Bagasje :</label>
-                    <select asp-for="Luggage" class="form-control">
-                        <option value="1">Liten</option>
-                        <option value="2">Middels</option>
-                        <option value="3">Stor</option>
-                        <option value="4">Svært Stor</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>År :</label>
-                    <select asp-for="Year" class="form-control">
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label>ImageUrl</label>
-                    <input type="file" id="uploadBox" name="file" class="form-control"/>
-                </div>
-                <br/>
-                 <br/>
+                        <div class="mb-3">
+                            <label>ImageUrl</label>
+                            <input type="file" id="uploadBox" name="file" class="form-control" />
+                        </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lagre</button>
                 </div>
-                <br/>
             </form>
         </div>
     </div>
 </div>
-</body>
-</html>

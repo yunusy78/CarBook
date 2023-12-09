@@ -61,36 +61,61 @@
                     </thead>
 
                     <tbody>
-                    @foreach(var item in Model)
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td><img src="/@item.ImageUrl" width="50" height="50"></td>
+                                <td>@item.CarId</td>
+                                <td>@item.BrandName</td>
+                                <td>@item.Model</td>
+                                <td>@item.LocationId</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.Year</td>
+                                <td>@item.Color</td>
+                                <td>@item.Price</td>
+                                <td>@item.Mileage</td>
+                                <td>@item.Seats</td>
+                                <td>@item.Luggage</td>
+                                <td>@item.Doors</td>
+
+                                <td><a href="/Admin/AdminCar/Update/@item.CarId" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
+                                <td><a href="/Admin/AdminCar/Delete/@item.CarId" class="btn btn-outline-danger" onclick="deleteItemWarning()"><i class="mdi mdi-delete"></i> Slett</a> </td>
+                                <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                                <td>@item.IsAvailable</td>
+                                <td>@item.Transmission</td>
+                                <td>@item.Fuel</td>
+                            </tr>
+
+                            <script>
+
+        function deleteItemWarning() {
+        var confirmDelete = confirm("Advarsel! Denne handlingen vil slette elementet permanent. Er du sikker på at du vil fortsette?");
+        if (confirmDelete) {
+            // Brukeren bekreftet sletting, slettingsprosessen kan fortsette.
+            window.location.href = "/Admin/AdminCar/Delete/@item.CarId";
+        }
+    }
+            </script>
+                        } 
+                    }
+                    
+                    else
                     {
                         <tr>
-                            <td><img src="/@item.ImageUrl" width="50" height="50"></td>
-                            <td>@item.CarId</td>
-                            <td>@item.BrandName</td>
-                            <td>@item.Model</td>
-                            <td>@item.LocationId</td>
-                            <td>@item.CategoryName</td>
-                            <td>@item.Year</td>
-                            <td>@item.Color</td>
-                            <td>@item.Price</td>
-                            <td>@item.Mileage</td>
-                            <td>@item.Seats</td>
-                            <td>@item.Luggage</td>
-                            <td>@item.Doors</td>
-                            
-                            <td><a href="#" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
-                            <td><a href="#" class="btn btn-outline-danger"><i class="mdi mdi-delete"></i> Slett</a> </td>
-                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
-                            <td>@item.IsAvailable</td>
-                            <td>@item.Transmission</td>
-                            <td>@item.Fuel</td>
-                        </tr>}
+                            <td class="alert-warning" colspan="3">Ingen data funnet</td>
+                        </tr>
+                    }
+                   
                     </tbody>
                 </table>
-
+<a href="/Admin/AdminCar/Create" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Legg en ny Bil</a>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
 </div>
             </div>
+            

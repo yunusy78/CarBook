@@ -1,0 +1,44 @@
+﻿@model CarBook.Dto.Dtos.ServiceDto.ServiceDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+<head>
+    <title>Legg til nytt produkt</title>
+    <style>
+        .custom-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 custom-form">
+            <h3 class="text-center">Legg til ny Tjeneste</h3>
+            <form method="post" enctype="multipart/form-data" action="/Admin/AdminService/Update">
+                @Html.AntiForgeryToken()
+                <input asp-for="ServiceId" class="form-control" type="hidden">
+                <input asp-for="ImageUrl" class="form-control" type="hidden">
+                <div class="form-group">
+                    <label>Tittel:</label>
+                    <input asp-for="Title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Beskrivelse :</label>
+                    <input asp-for="Description" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Bilde Url</label>
+                    <input type="file" id="uploadBox" name="file1" class="form-control" />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lagre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using CarBook.Dto.Dtos.CarDto;
+﻿using Business.Abstract;
+using CarBook.Dto.Dtos.CarDto;
 using CarBook.Dto.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -7,30 +8,25 @@ namespace CarBook.WebUI.ViewComponents.CarViewComponent;
 
 public class FeeaturedVehiclesViewComponent : ViewComponent
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly IConfiguration _configuration;
+    private readonly ICarService _carService;
     
-    public FeeaturedVehiclesViewComponent(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+    public FeeaturedVehiclesViewComponent(ICarService carService)
     {
-        _httpClientFactory = httpClientFactory;
-        _configuration = configuration;
+        _carService = carService;
     }
     
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var client = _httpClientFactory.CreateClient();
-        var response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Car.Path}");
-        if (response.IsSuccessStatusCode)
+        var values = await _carService.GetAllAsync();
+        if (values != null)
         {
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<CarDto>>(jsonContent);
-            
             return View(values!.Skip(values!.Count - 6).ToList());
-            
         }
-        
-        return View();
+        else
+        {
+            return View(new List<CarDto>());
+        }
+       
     }
     
 }

@@ -1,0 +1,35 @@
+﻿@model CarBook.Dto.Dtos.FeatureDto.FeatureDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+<head>
+    <title>Legg til nytt produkt</title>
+    <style>
+        .custom-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 custom-form">
+            <h3 class="text-center">Rediger Funksjon</h3>
+            <form method="post" enctype="multipart/form-data" action="/Admin/AdminFeature/Update">
+                @Html.AntiForgeryToken()
+            <input asp-for="FeatureId" type="hidden" class="form-control" >
+                <div class="form-group">
+                    <label>Navn :</label>
+                    <input asp-for="Name" class="form-control" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lagre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

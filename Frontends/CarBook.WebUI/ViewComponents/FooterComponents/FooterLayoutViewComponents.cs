@@ -1,4 +1,5 @@
-﻿using CarBook.Dto.Dtos.FooterDto;
+﻿using Business.Abstract;
+using CarBook.Dto.Dtos.FooterDto;
 using CarBook.Dto.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -7,26 +8,23 @@ namespace CarBook.WebUI.ViewComponents.FooterComponents;
 
 public class FooterLayoutViewComponents : ViewComponent
 {
-    private readonly IHttpClientFactory _clientFactory;
-    private readonly IConfiguration _configuration;
+    private readonly IFooterService _footerService;
     
-    public FooterLayoutViewComponents(IHttpClientFactory clientFactory, IConfiguration configuration)
+    
+    
+    public FooterLayoutViewComponents(IFooterService footerService)
     {
-        _clientFactory = clientFactory;
-        _configuration = configuration;
+        _footerService = footerService;
     }
     
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var apiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var client = _clientFactory.CreateClient();
-        var response = await client.GetAsync($"{apiSettings!.BaseUri}/{apiSettings.Footer.Path}");
+        var response = await _footerService.GetAllAsync();
         
-        if (response.IsSuccessStatusCode)
+        if (response != null)
         {
-            var responseStream = await response.Content.ReadAsStringAsync();
-            var footer = JsonConvert.DeserializeObject<List<FooterDto>>(responseStream);
-            return View(footer!.Take(1).ToList());
+            
+            return View(response!.Take(1).ToList());
         }
         
         return View();

@@ -1,4 +1,5 @@
-﻿using CarBook.Dto.Dtos.CommentDto;
+﻿using Business.Abstract;
+using CarBook.Dto.Dtos.CommentDto;
 using CarBook.Dto.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -7,23 +8,21 @@ namespace CarBook.WebUI.ViewComponents.CreateCommentViewComponent;
 
 public class CreateCommentViewComponent : ViewComponent
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly IConfiguration _configuration;
+    private readonly ICommentService _commentService;
     
-    public CreateCommentViewComponent(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+    
+    public CreateCommentViewComponent(ICommentService commentService)
     {
-        _httpClientFactory = httpClientFactory;
-        _configuration = configuration;
+        _commentService = commentService;
     }
     
     public async Task<IViewComponentResult> InvokeAsync(CommentDto commentDto)
     {
         commentDto.CreatedAt = DateTime.Now;
-        var apiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var client = _httpClientFactory.CreateClient();
-        var response = await client.PostAsJsonAsync($"{apiSettings!.BaseUri}/{apiSettings.Comment.Path}", commentDto);
         
-        if (response.IsSuccessStatusCode)
+        var response = await _commentService.AddAsync(commentDto);
+        
+        if (response)
         {
             TempData["Message"] = "Takk for din melding. Vi vil kontakte deg snart.";
             return View();
