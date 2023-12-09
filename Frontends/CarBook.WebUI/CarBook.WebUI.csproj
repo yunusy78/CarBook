@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0"/>
@@ -32,10 +33,29 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Frontends\CarBook.Dto\CarBook.Dto.csproj" />
+      <ProjectReference Include="..\Business\Business.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\Car\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminBlogCategory\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminBlogCategory\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminBlogCategory\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminCarCategory\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminCarCategory\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminCarCategory\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTestimonial\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTestimonial\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTestimonial\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminLocation\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminLocation\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminLocation\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminService\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminService\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminService\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\AdminTagCloud\Update.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -47,6 +67,17 @@
       <Folder Include="Areas\Admin\Models\" />
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\Components\" />
+      <Folder Include="wwwroot\ImageFile\About\" />
+      <Folder Include="wwwroot\ImageFile\Blog\" />
+      <Folder Include="wwwroot\ImageFile\Car\" />
+      <Folder Include="wwwroot\ImageFile\Service\" />
+      <Folder Include="wwwroot\ImageFile\Testimonial\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Business">
+        <HintPath>..\Business\bin\Debug\net8.0\Business.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

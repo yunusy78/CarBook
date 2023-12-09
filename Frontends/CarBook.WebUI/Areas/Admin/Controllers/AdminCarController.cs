@@ -1,4 +1,5 @@
-﻿using CarBook.Dto.Dtos.BlogCategory;
+﻿using Business.Abstract;
+using CarBook.Dto.Dtos.BlogCategory;
 using CarBook.Dto.Dtos.BrandDto;
 using CarBook.Dto.Dtos.CarCategory;
 using CarBook.Dto.Dtos.CarDto;
@@ -12,26 +13,27 @@ namespace CarBook.WebUI.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AdminCarController : Controller
 {
-    private readonly IHttpClientFactory _clientFactory;
-    private readonly IConfiguration _configuration;
     
-    public AdminCarController(IHttpClientFactory clientFactory, IConfiguration configuration)
+    private readonly ICarService _carService;
+    private readonly ICarCategoryService _carCategoryService;
+    private readonly IBrandService _brandService;
+    private readonly ILocationService _locationService;
+    
+    public AdminCarController(ICarService carService, ICarCategoryService carCategoryService, IBrandService brandService, ILocationService locationService)
     {
-        _clientFactory = clientFactory;
-        _configuration = configuration;
+        _carService = carService;
+        _carCategoryService = carCategoryService;
+        _brandService = brandService;
+        _locationService = locationService;
     }
     
     // GET
     public async Task<IActionResult> Index()
     {
-        var client = _clientFactory.CreateClient();
-        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Car.Path}");
-        if (response.IsSuccessStatusCode)
+        var response = await _carService.GetAllAsync();
+        if (response != null)
         {
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<CarDto>>(jsonContent);
-            return View(values);
+            return View(response);
         }
         return View();
     }
@@ -40,39 +42,33 @@ public class AdminCarController : Controller
     public async Task<IActionResult> Create()
     {
         var brandList = new List<SelectListItem>();
-        var client = _clientFactory.CreateClient();
-        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Brand.Path}");
-        if (response.IsSuccessStatusCode)
+        var response = await _brandService.GetAllAsync();
+        if (response != null)
         {
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<BrandDto>>(jsonContent);
-            foreach (var value in values)
+            foreach (var value in response)
             {
                 brandList.Add(new SelectListItem(value.BrandName, value.BrandId.ToString()));
             }
         }
+        
         ViewBag.BrandList = brandList;
         var categoryList = new List<SelectListItem>();
-        response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.CarCategory.Path}");
-        if (response.IsSuccessStatusCode)
+        var response2 = await _carCategoryService.GetAllAsync();
+        if (response2 != null)
         {
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<CarCategoryDto>>(jsonContent);
-            foreach (var value in values)
+            foreach (var value in response2)
             {
                 categoryList.Add(new SelectListItem(value.Name, value.CategoryId.ToString()));
             }
         }
+        
         ViewBag.CategoryList = categoryList;
         
         var locationList = new List<SelectListItem>();
-        response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Location.Path}");
-        if (response.IsSuccessStatusCode)
+        var response3 = await _locationService.GetAllAsync();
+        if (response3 != null)
         {
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<LocationDto>>(jsonContent);
-            foreach (var value in values)
+            foreach (var value in response3)
             {
                 locationList.Add(new SelectListItem(value.Name, value.LocationId.ToString()));
             }
@@ -87,22 +83,107 @@ public class AdminCarController : Controller
         if (file != null)
         {
             var fileName = Path.GetFileName(file.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(fileStream);
-            }
-            carDto.ImageUrl = fileName;
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/ImageFile/Car/" + fileName);
+            var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+            carDto.ImageUrl =@"ImageFile/Car/"+ fileName;
         }
-        var client = _clientFactory.CreateClient();
-        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var response = await client.PostAsJsonAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Car.Path}", carDto);
-        if (response.IsSuccessStatusCode)
+        else
         {
-            return RedirectToAction("Index");
+            carDto.ImageUrl = "default.jpg";
+        }
+        var response = await _carService.AddAsync(carDto);
+        if (response)
+        {
+            return Redirect("/Admin/AdminCar/Index");
+
         }
         return View();
     }
+    
+    
+    public async Task<IActionResult> Delete(int id)
+    {
+        var response = await _carService.DeleteAsync(id);
+        if (response)
+        {
+            return Redirect("/Admin/AdminCar/Index");
+        }
+        return Redirect("/Admin/AdminCar/Index");
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        var brandList = new List<SelectListItem>();
+        var response = await _brandService.GetAllAsync();
+        if (response != null)
+        {
+            foreach (var value in response)
+            {
+                brandList.Add(new SelectListItem(value.BrandName, value.BrandId.ToString()));
+            }
+        }
+        
+        ViewBag.BrandList = brandList;
+        var categoryList = new List<SelectListItem>();
+        var response2 = await _carCategoryService.GetAllAsync();
+        if (response2 != null)
+        {
+            foreach (var value in response2)
+            {
+                categoryList.Add(new SelectListItem(value.Name, value.CategoryId.ToString()));
+            }
+        }
+        
+        ViewBag.CategoryList = categoryList;
+        
+        var locationList = new List<SelectListItem>();
+        var response3 = await _locationService.GetAllAsync();
+        if (response3 != null)
+        {
+            foreach (var value in response3)
+            {
+                locationList.Add(new SelectListItem(value.Name, value.LocationId.ToString()));
+            }
+        }
+        ViewBag.LocationList = locationList;
+        
+        var car = await _carService.GetByIdAsync(id);
+        if (car != null)
+        {
+            return View(car);
+        }
+        
+        return View();
+    }
+    
+    
+    [HttpPost]
+    
+    public async Task<IActionResult> Update(UpdateCarDto carDto, IFormFile? file)
+    {
+        if (file != null)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/ImageFile/Car/" + fileName);
+            var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+            carDto.ImageUrl =@"ImageFile/Car/"+ fileName;
+        }
+        else
+        {
+            carDto.ImageUrl = carDto.ImageUrl;
+        }
+        var response = await _carService.UpdateAsync(carDto);
+        if (response)
+        {
+            return Redirect("/Admin/AdminCar/Index");
+
+        }
+        return View();
+    }
+    
     
 
    

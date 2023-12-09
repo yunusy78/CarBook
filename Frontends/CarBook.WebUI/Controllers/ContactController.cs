@@ -1,4 +1,5 @@
-﻿using CarBook.Dto.Dtos.ContactDto;
+﻿using Business.Abstract;
+using CarBook.Dto.Dtos.ContactDto;
 using CarBook.Dto.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -7,13 +8,11 @@ namespace CarBook.WebUI.Controllers;
 
 public class ContactController : Controller
 {
-    private readonly IHttpClientFactory _clientFactory;
-    private readonly IConfiguration _configuration;
+    private readonly IContactService _contactService;
     
-    public ContactController(IHttpClientFactory clientFactory, IConfiguration configuration)
+    public ContactController(IContactService contactService)
     {
-        _clientFactory = clientFactory;
-        _configuration = configuration;
+        _contactService = contactService;
     }
     
     
@@ -30,11 +29,8 @@ public class ContactController : Controller
     public async Task<IActionResult> Index(ContactDto contactDto)
     {
         contactDto.CreatedAt = DateTime.Now;
-        var apiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var client = _clientFactory.CreateClient();
-        var response = await client.PostAsJsonAsync($"{apiSettings!.BaseUri}/{apiSettings.Contact.Path}", contactDto);
-        
-        if (response.IsSuccessStatusCode)
+        var response = await _contactService.AddAsync(contactDto);
+        if (response != null)
         {
             TempData["Message"] = "Takk for din melding. Vi vil kontakte deg snart.";
             return RedirectToAction("Index");

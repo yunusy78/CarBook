@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CarBook.WebUI.Data;
@@ -11,6 +13,23 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<ICarService, CarManager>();
+builder.Services.AddScoped<IFeatureService, FeatureManager>();
+builder.Services.AddScoped<IBrandService, BrandManager>();
+builder.Services.AddScoped<IBannerService, BannerManager>();
+builder.Services.AddScoped<IBlogService, BlogManager>();
+builder.Services.AddScoped<IBlogCategoryService, BlogCategoryManager>();
+builder.Services.AddScoped<ICarCategoryService, CarCategoryManager>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<IFooterService, FooterManager>();
+builder.Services.AddScoped<ILocationService, LocationManager>();
+builder.Services.AddScoped<IServiceService, ServiceManager>();
+builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
+builder.Services.AddScoped<IAboutService, AboutManager>();
+builder.Services.AddScoped<ITagCloudService, TagCloudManager>();
+builder.Services.AddScoped<IBlogService , BlogManager>();
+builder.Services.AddScoped<IAuthorService, AuthorManager>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -38,7 +57,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=About}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.UseEndpoints(endpoints =>
