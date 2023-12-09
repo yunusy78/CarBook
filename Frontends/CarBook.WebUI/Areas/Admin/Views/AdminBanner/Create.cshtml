@@ -1,4 +1,4 @@
-﻿@model CarBook.Dto.Dtos.TestimonialDto.TestimonialDto
+﻿@model CarBook.Dto.Dtos.BannerDto.BannerDto
 
 @{
     ViewBag.Title = "title";
@@ -18,13 +18,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 custom-form">
-            <h3 class="text-center">Legg til ny Referanser</h3>
-            <form method="post" enctype="multipart/form-data" action="/Admin/AdminTestimonial/Create">
+            <h3 class="text-center">Legg til ny Banner</h3>
+            <form method="post" enctype="multipart/form-data" action="/Admin/AdminBanner/Create">
                 @Html.AntiForgeryToken()
-                <div class="form-group">
-                    <label>Navn:</label>
-                    <input asp-for="Name" class="form-control" required>
-                </div>
                 <div class="form-group">
                     <label>Tittel:</label>
                     <input asp-for="Title" class="form-control" required>
@@ -32,6 +28,14 @@
                 <div class="form-group">
                     <label>Beskrivelse :</label>
                     <input asp-for="Description" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Video Tittel:</label>
+                    <input asp-for="VideoTitle" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Video Url</label>
+                    <input type="file" id="uploadBox" name="file2" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label>Bilde Url</label>

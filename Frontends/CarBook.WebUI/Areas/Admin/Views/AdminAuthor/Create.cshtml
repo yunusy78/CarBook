@@ -1,4 +1,4 @@
-﻿@model CarBook.Dto.Dtos.TestimonialDto.TestimonialDto
+﻿@model CarBook.Dto.Dtos.AuthorDto.AuthorDto
 
 @{
     ViewBag.Title = "title";
@@ -18,16 +18,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 custom-form">
-            <h3 class="text-center">Legg til ny Referanser</h3>
-            <form method="post" enctype="multipart/form-data" action="/Admin/AdminTestimonial/Create">
+            <h3 class="text-center">Legg til ny Forfatter</h3>
+            <form method="post" enctype="multipart/form-data" action="/Admin/AdminAuthor/Create">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label>Navn:</label>
-                    <input asp-for="Name" class="form-control" required>
+                    <label>ForNavn:</label>
+                    <input asp-for="FirstName" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Tittel:</label>
-                    <input asp-for="Title" class="form-control" required>
+                    <label>EtterNavn:</label>
+                    <input asp-for="LastName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>E-Post:</label>
+                    <input asp-for="Email" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Beskrivelse :</label>

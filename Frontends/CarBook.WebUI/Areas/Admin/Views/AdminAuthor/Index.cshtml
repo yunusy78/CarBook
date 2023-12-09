@@ -1,0 +1,82 @@
+﻿@model List<CarBook.Dto.Dtos.AuthorDto.AuthorDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-content">
+                <div class="container-fluid">
+
+
+<div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18"></h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                        <li class="breadcrumb-item active">Forfatter</li>
+                                    </ol>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>  
+
+<div class="row">  
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Forfatter</h4>
+                <p class="card-subtitle mb-4"></p>
+
+                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Bilde</th>
+                        <th>Navn</th>
+                        <th>E-Post</th>
+                        <th>Beskrivelse</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.AuthorId</td>
+                            <td><img src="/@item.ImageUrl" alt="" width="100" height="100"></td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.Email</td>
+                            <td> <script>
+                var description = "@item.Description";
+                var first30Words = description.split(" ").slice(0, 15).join(" ");                                                                                     
+               document.write(first30Words);                                                                                
+                                        </script></td>
+                            <td><a href="/Admin/AdminAuthor/Update/@item.AuthorId" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
+                            <td><a href="/Admin/AdminAuthor/Delete/@item.AuthorId" class="btn btn-outline-danger" onclick="deleteItemWarning()"><i class="mdi mdi-delete"></i> Slett</a> </td>
+                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                        </tr>
+                        <script>
+                function deleteItemWarning() {
+                var confirmDelete = confirm("Advarsel! Denne handlingen vil slette elementet permanent. Er du sikker på at du vil fortsette?");
+                if (confirmDelete) {
+            // Brukeren bekreftet sletting, slettingsprosessen kan fortsette.
+                window.location.href = "/Admin/AdminAuthor/Delete/@item.AuthorId";
+                  }
+               }
+            </script>
+                    }
+                    </tbody>
+                </table>
+<a href="/Admin/AdminAuthor/Create" class="btn btn-primary"> <i class="mdi mdi-plus"></i> Legg en ny Forfatter</a>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+</div>
+            </div>
