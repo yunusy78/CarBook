@@ -64,6 +64,21 @@ public class CarManager : ICarService
         return null!;
     }
 
+    public async Task<List<CarDto>> GetCarWithLocationAndStatus(int locationId)
+    {
+        var client = _clientFactory.CreateClient();
+        var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+        var response = await client.GetAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.Car.Path}/withLocationAndStatus/{locationId}");
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonContent = await response.Content.ReadAsStringAsync();
+            var value = JsonConvert.DeserializeObject<List<CarDto>>(jsonContent);
+            return value!;
+        }
+        return null!;
+        
+    }
+
     public async Task<bool> DeleteAsync(int id)
     {
         var client = _clientFactory.CreateClient();

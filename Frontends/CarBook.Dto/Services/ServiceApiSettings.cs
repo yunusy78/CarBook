@@ -37,6 +37,14 @@ public class ServiceApiSettings
     
     public ServiceApi Author { get; set; }
     
+    public ServiceApi Pricing { get; set; }
+    
+    public ServiceApi CarPricing { get; set; }
+    
+    public ServiceApi SocialMedia { get; set; }
+    
+    public ServiceApi ReservationCar { get; set; }
+    
 }
 
 

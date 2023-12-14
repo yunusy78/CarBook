@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.SignalR.Protocol
+@model X.PagedList.IPagedList<CarBook.Dto.Dtos.CarDto.CarDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+@await Html.PartialAsync("/Views/UserLayoutPartialView/_SubHeaderPartialView.cshtml")
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var car in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="/@car.ImageUrl" class="card-img-top" alt="Car Image">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">@car.BrandName @car.Model</h5>
+                            <p class="card-text text-info">@car.CategoryName</p>
+                            @{
+                                var textColors = new List<string> { "text-info", "text-danger", "text-warning" };
+                                var colorIndex = 0;
+                            }
+                            
+                            <ul class="list-group">
+                                @foreach (var pricingData in car.PricingData)
+                                {
+                                    <li class="list-group-item @(textColors[colorIndex])">NOK @pricingData.Value/@pricingData.Key</li>
+                                    colorIndex = (colorIndex + 1) % textColors.Count; // Sonraki rengi geç
+                                }
+                            </ul>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <a href="/ReservationCar/Create/@car.CarId" class="btn btn-primary btn-sm mr-2">Bestill nå</a>
+                            <a href="car-single.html" class="btn btn-secondary btn-sm">Detaljer</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        @for (var i = 1; i <= Model.PageCount; i++)
+                        {
+                            <li><a class="page-numbers @(i == Model.PageNumber ? "current" : "")" href="@Url.Action("Index", "Car", new { page = i })" style="color: @(i == Model.PageNumber ? "white" : "black"); background-color: @(i == Model.PageNumber ? "#e83e8c" : "white")">@i</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

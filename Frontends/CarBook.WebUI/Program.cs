@@ -30,6 +30,10 @@ builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<ITagCloudService, TagCloudManager>();
 builder.Services.AddScoped<IBlogService , BlogManager>();
 builder.Services.AddScoped<IAuthorService, AuthorManager>();
+builder.Services.AddScoped<IPricingService, PricingManager>();
+builder.Services.AddScoped<ICarPricingService, CarPricingManager>();
+builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
+builder.Services.AddScoped<IReservationService, ReservationCarManager>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();

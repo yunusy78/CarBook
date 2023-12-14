@@ -8,4 +8,6 @@ public interface ICarService : IGenericService<CarDto>
     Task<bool> UpdateAsync(UpdateCarDto entity);
 
     Task<List<CarDto>> GetCarWithPriceBy();
+    
+    Task<List<CarDto>> GetCarWithLocationAndStatus(int locationId);
 }
