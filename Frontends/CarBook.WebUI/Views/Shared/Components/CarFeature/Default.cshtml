@@ -1,0 +1,28 @@
+﻿@model List<CarBook.Dto.Dtos.CarFeatureDto.GetCarFeatureDto>
+
+@{
+    var items = Model.ToList();
+    int itemsPerColumn = 5;
+    var groupedItems = items.Select((item, index) => new { Item = item, Group = index / itemsPerColumn })
+        .GroupBy(x => x.Group, x => x.Item)
+        .ToList();
+}
+
+<div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+    <div class="row">
+        @foreach (var group in groupedItems)
+        {
+            <div class="col-md-4">
+                <ul class="features">
+                    @foreach (var item in group)
+                    {
+                        <li class="@((item.IsAvailable) ? "check" : "remove")">
+                            <span class="@((item.IsAvailable) ? "ion-ios-checkmark" : "ion-ios-close")"></span>
+                            @item.FeatureName
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

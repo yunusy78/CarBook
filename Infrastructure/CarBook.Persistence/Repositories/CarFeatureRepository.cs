@@ -1,4 +1,5 @@
-﻿using CarBook.Application.Interfaces;
+﻿using System.Linq.Expressions;
+using CarBook.Application.Interfaces;
 using CarBook.Domain.DTOs.CarFeatureDto;
 using CarBook.Domain.Entities;
 using CarBook.Persistence.Context;
@@ -70,12 +71,54 @@ public class CarFeatureRepository : ICarFeatureRepository
         
     }
 
-    public async Task<List<CarFeature>> GetCarFeatureWithCarAndFeatureAsync()
+    public async Task<List<GetCarFeatureWithCarDto>> GetCarFeatureWithCarAndFeatureAsync()
     {
         var carFeatures = await _dbContext.CarFeatures
             .Include(x => x.Car)
             .Include(x => x.Feature)
             .ToListAsync();
-        return carFeatures;
+        
+        var carFeatureList = new List<GetCarFeatureWithCarDto>();
+        foreach (var carFeature in carFeatures)
+        {
+            var carFeatureWithCarAndFeature = new GetCarFeatureWithCarDto
+            {
+                CarFeatureId = carFeature.CarFeatureId,
+                CarId = carFeature.CarId,
+                FeatureId = carFeature.FeatureId,
+                IsAvailable = carFeature.IsAvailable,
+                CarModel = carFeature.Car.Model,
+                FeatureName = carFeature.Feature.Name
+            };
+            carFeatureList.Add(carFeatureWithCarAndFeature);
+        }
+        return carFeatureList;
     }
+
+    public async Task<List<GetCarFeatureWithCarDto>> GetByFilterAsync(int id)
+    {
+        var carFeatures = await _dbContext.CarFeatures
+            .Where(x=>x.CarId==id)
+            .Include(x => x.Car)
+            .Include(x => x.Feature)
+            .ToListAsync();
+        
+        var carFeatureList = new List<GetCarFeatureWithCarDto>();
+        foreach (var carFeature in carFeatures)
+        {
+            var carFeatureWithCarAndFeature = new GetCarFeatureWithCarDto
+            {
+                CarFeatureId = carFeature.CarFeatureId,
+                CarId = carFeature.CarId,
+                FeatureId = carFeature.FeatureId,
+                IsAvailable = carFeature.IsAvailable,
+                CarModel = carFeature.Car.Model,
+                FeatureName = carFeature.Feature.Name
+            };
+            carFeatureList.Add(carFeatureWithCarAndFeature);
+        }
+        return carFeatureList;
+        
+    }
+    
 }

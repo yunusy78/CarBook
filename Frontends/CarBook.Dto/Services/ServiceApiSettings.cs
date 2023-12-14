@@ -45,6 +45,8 @@ public class ServiceApiSettings
     
     public ServiceApi ReservationCar { get; set; }
     
+    public ServiceApi CarFeature { get; set; }
+    
 }
 
 
