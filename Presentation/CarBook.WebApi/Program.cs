@@ -31,6 +31,7 @@ builder.Services.AddScoped<UpdateAboutCommandHandler>();
 builder.Services.AddScoped<DeleteAboutCommandHandler>();
 
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IReservationCarRepository, ReservationCarRepository>();
 
 builder.Services.AddScoped<GetBannerQueryHandler>();
 builder.Services.AddScoped<GetBannerByIdQueryHandler>();
@@ -49,6 +50,7 @@ builder.Services.AddScoped<GetCarByIdQueryHandler>();
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<DeleteCarCommandHandler>();
+builder.Services.AddScoped<GetCarWithLocationAndStatusQueryHandler>();
 builder.Services.AddScoped<GetCarWithPricingWithQueryHandler>();
 builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
 builder.Services.AddScoped<GetCarCategoryCountQueryHandler>();
@@ -64,6 +66,9 @@ builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
 builder.Services.AddScoped<CreateCategoryCommandHandler>();
 builder.Services.AddScoped<UpdateCategoryCommandHandler>();
 builder.Services.AddScoped<DeleteCategoryCommandHandler>();
+
+builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
+builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
@@ -89,7 +94,7 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = false
         };
     });
-
+    
 builder.Services.AddControllers(option => {
     option.CacheProfiles.Add("Default30",
         new CacheProfile()
@@ -97,7 +102,10 @@ builder.Services.AddControllers(option => {
             Duration = 30
         });
     //option.ReturnHttpNotAcceptable=true;
-}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
+}).AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+}).AddXmlDataContractSerializerFormatters();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -6,4 +6,10 @@ public class Location
     
     public string Name { get; set; }
     
+    
+    public List<Car> Cars { get; set; }
+    
+   
+  
+    
 }

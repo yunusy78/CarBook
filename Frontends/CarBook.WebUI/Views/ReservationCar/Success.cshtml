@@ -1,0 +1,79 @@
+﻿@model int
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_UserLayout";
+}
+@await Component.InvokeAsync("Banner")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasjon Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .success-container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #27ae60;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <div class="success-container">
+        <i class="fa fa-check-circle success-icon"></i>
+        <br/><br/>
+        <h1>Gratulerer!</h1>
+        <br/>
+        <br/>
+        <p>Din Reservasjonen er vellykket. Takk!</p>
+        <br/>
+        <p class="pb-3">Takk for din melding. Vi vil kontakte deg snart.</p>
+        <br/>
+        <h4 class="text-warning pb-3">Ordre-ID - @Model</h4>
+        <br/>
+        <a href="/Default/Index" class="back-to-home">Tilbake til hjemmesiden</a>
+        <br/>
+        <div>
+            <img src="/images.png" class="img-fluid mt-3"/>
+        </div>
+    </div>
+</body>
+</html>
+<br/><br/><br/><br/><br/><br/>
+

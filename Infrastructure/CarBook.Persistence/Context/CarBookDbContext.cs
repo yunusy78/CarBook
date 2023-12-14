@@ -7,11 +7,33 @@ namespace CarBook.Persistence.Context;
 public class CarBookDbContext : DbContext
 {
     
+    
+    
+    
    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CarBook;Trusted_Connection=True; TrustServerCertificate=True;MultipleActiveResultSets=true");
         
     }
+   
+   
+   
+   /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+   {
+       base.OnModelCreating(modelBuilder);
+       modelBuilder.Entity<CarReservation>()
+           .HasOne(x=>x.PickUpLocation)
+           .WithMany(x=>x.PickUpRentACars)
+           .HasForeignKey(x=>x.PickUpLocationId)
+           .OnDelete(DeleteBehavior.ClientSetNull);
+       modelBuilder.Entity<CarReservation>()
+           .HasOne(x=>x.DropOffLocation)
+           .WithMany(x=>x.DropOffRentACars)
+           .HasForeignKey(x=>x.DropOffLocationId)
+           .OnDelete(DeleteBehavior.ClientSetNull);
+        
+   }*/
+
     public DbSet<Car> Cars { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Pricing> Pricings { get; set; }
@@ -38,5 +60,10 @@ public class CarBookDbContext : DbContext
     public DbSet<TagCloud> TagClouds { get; set; }
     
     public DbSet<Comment> Comments { get; set; }
+    
+    
+    public DbSet<ReservationCar> ReservationCars { get; set; }
+    
+    public DbSet<Customer> Customers { get; set; }
     
 }

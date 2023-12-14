@@ -1,4 +1,6 @@
-﻿namespace CarBook.Domain.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace CarBook.Domain.Entities;
 
 public class Car
 {
@@ -46,7 +48,7 @@ public class Car
     
     public List<CarPricing> CarPricings { get; set; }
     
-    
+ 
     
     
 }

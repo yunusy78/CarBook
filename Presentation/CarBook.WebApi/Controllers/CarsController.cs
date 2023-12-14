@@ -21,10 +21,12 @@ namespace CarBook.WebApi.Controllers
         private readonly GetCarWithBrandQueryHandler _getCarWithBrandQueryHandler;
         private readonly GetCarWithPricingWithQueryHandler _getCarWithPricingWithQueryHandler;
         private readonly GetCarCategoryCountQueryHandler _getCarCategoryCountQueryHandler;
+        private readonly GetCarWithLocationAndStatusQueryHandler _getCarWithLocationAndStatusQueryHandler;
         
         
         
-        public CarsController(GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, DeleteCarCommandHandler deleteCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetCarWithPricingWithQueryHandler getCarWithPricingWithQueryHandler, GetCarCategoryCountQueryHandler getCarCategoryCountQueryHandler)
+        public CarsController(GetCarQueryHandler getCarQueryHandler,GetCarWithLocationAndStatusQueryHandler getCarWithLocationAndStatusQueryHandler
+            , GetCarByIdQueryHandler getCarByIdQueryHandler, CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, DeleteCarCommandHandler deleteCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetCarWithPricingWithQueryHandler getCarWithPricingWithQueryHandler, GetCarCategoryCountQueryHandler getCarCategoryCountQueryHandler)
         {
             _getCarQueryHandler = getCarQueryHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -34,16 +36,25 @@ namespace CarBook.WebApi.Controllers
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
             _getCarWithPricingWithQueryHandler = getCarWithPricingWithQueryHandler;
             _getCarCategoryCountQueryHandler = getCarCategoryCountQueryHandler;
+            _getCarWithLocationAndStatusQueryHandler = getCarWithLocationAndStatusQueryHandler;
         }
         
         
         
         [HttpGet]
-        
         public async Task<IActionResult> GetAll()
         {
             var banners = await _getCarWithBrandQueryHandler.Handle();
             return Ok(banners);
+        }
+        
+        [HttpGet("withLocationAndStatus/{locationId}")]
+        
+        public async Task<IActionResult> GetWithLocationAndStatus(int locationId)
+        {
+            
+            var cars = await _getCarWithLocationAndStatusQueryHandler.Handle(locationId);
+            return Ok(cars);
         }
         
         [HttpGet("{id}")]

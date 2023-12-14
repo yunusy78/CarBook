@@ -57,7 +57,7 @@
                             <td>@item.Created</td>
                             <td><a href="/Admin/AdminBlog/Update/@item.BlogId" class="btn btn-outline-warning"> <i class="mdi mdi-account-edit"></i> Rediger</a></td>
                             <td><a href="/Admin/AdminBlog/Delete/@item.BlogId" class="btn btn-outline-danger" onclick="deleteItemWarning()"><i class="mdi mdi-delete"></i> Slett</a> </td>
-                            <td><a href="#" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Detaljer</a></td>
+                            <td><a href="/Admin/Comment/Detail/@item.BlogId" class="btn btn-outline-primary"><i class="mdi mdi-eye"></i> Kommentar</a></td>
                         </tr>
                         <script>
                 function deleteItemWarning() {

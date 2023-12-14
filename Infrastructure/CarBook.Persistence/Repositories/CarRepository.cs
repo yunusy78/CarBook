@@ -1,4 +1,5 @@
-﻿using CarBook.Application.Interfaces;
+﻿using System.Linq.Expressions;
+using CarBook.Application.Interfaces;
 using CarBook.Domain.Entities;
 using CarBook.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -38,4 +39,16 @@ public class CarRepository : ICarRepository
         var carCountByCategory = cars.GroupBy(x => x.Category.Name).ToDictionary(x => x.Key, y => y.Count());
         return carCountByCategory;
     }
+
+    public async Task<List<Car>> GetByFilterAsync(Expression<Func<Car, bool>> filter)
+    {
+        var result = await _context.Cars.Where(filter)
+            .Include(x => x.Brand)
+            .Include(y => y.Category)
+            .Include(z => z.CarPricings)
+            .ThenInclude(f => f.Pricing)
+            .ToListAsync();
+        return result;
+    }
+
 }
