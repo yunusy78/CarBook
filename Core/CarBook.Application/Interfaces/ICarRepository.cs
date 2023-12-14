@@ -9,6 +9,8 @@ public interface ICarRepository
     
     Task<List<Car>> GetCarWithPriceAsync();
     
+    Task<Car> GetByIdAsyncWithBrand(int id);
+    
     Dictionary<string, int> GetCarCountByCategory();
     
     Task<List<Car>>GetByFilterAsync(Expression<Func<Car, bool>> filter);

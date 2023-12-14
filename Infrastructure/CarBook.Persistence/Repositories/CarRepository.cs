@@ -17,7 +17,10 @@ public class CarRepository : ICarRepository
 
     public async Task<List<Car>> GetCarsAsync()
     {
-        var cars = await _context.Cars.Include(x=>x.Brand).Include(y=>y.Category).ToListAsync();
+        var cars = await _context.Cars
+            .Include(x=>x.Brand)
+            .Include(y=>y.Category)
+            .ToListAsync();
         return cars;
     }
 
@@ -32,11 +35,21 @@ public class CarRepository : ICarRepository
 
         return cars;
     }
-    
+
+    public Task<Car> GetByIdAsyncWithBrand(int id)
+    {
+        var car = _context.Cars
+            .Include(x => x.Brand)
+            .Include(y => y.Category)
+            .FirstOrDefaultAsync(x => x.CarId == id);
+        return car!;
+    }
+
     public Dictionary<string, int> GetCarCountByCategory()
     {
         var cars = _context.Cars.Include(x => x.Category).ToList();
-        var carCountByCategory = cars.GroupBy(x => x.Category.Name).ToDictionary(x => x.Key, y => y.Count());
+        var carCountByCategory = cars.GroupBy(x => x.Category.Name)
+            .ToDictionary(x => x.Key, y => y.Count());
         return carCountByCategory;
     }
 

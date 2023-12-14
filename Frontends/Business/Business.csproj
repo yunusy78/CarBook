@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\CarBook.Domain\CarBook.Domain.csproj" />
       <ProjectReference Include="..\CarBook.Dto\CarBook.Dto.csproj" />
     </ItemGroup>
 

@@ -66,6 +66,14 @@ namespace CarBook.WebApi.Controllers
             return Ok(result);
         }
         
+        [HttpGet("GetByFilter/{id}")]
+        
+        public async Task<IActionResult> GetByFilter(int id)
+        {
+            var result = await _carFeatureRepository.GetByFilterAsync(id);
+            return Ok(result);
+        }
+        
         
     }
 }

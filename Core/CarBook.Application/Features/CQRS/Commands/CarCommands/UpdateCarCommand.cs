@@ -28,7 +28,7 @@ public class UpdateCarCommand
     
     public bool IsAvailable { get; set; }
     
-    public int Transmission { get; set; }
+    public string Transmission { get; set; }
     
     public int CategoryId { get; set; }
     

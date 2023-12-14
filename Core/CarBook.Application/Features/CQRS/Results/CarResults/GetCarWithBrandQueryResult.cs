@@ -34,7 +34,7 @@ public class GetCarWithBrandQueryResult
     
     public bool IsAvailable { get; set; }
     
-    public int Transmission { get; set; }
+    public string Transmission { get; set; }
     
     public string Fuel { get; set; }
 }

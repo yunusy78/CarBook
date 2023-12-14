@@ -68,6 +68,9 @@
       <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Create.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Index.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminBanner\Update.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminCarFeature\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminCarFeature\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\AdminCarFeature\Update.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPricing\Create.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPricing\Index.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\AdminPricing\Update.cshtml" />

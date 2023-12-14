@@ -6,6 +6,8 @@ public class GetCarByIdQueryResult
     
     public int BrandId { get; set; }
     
+    public string BrandName { get; set; }
+    
     public string Model { get; set; }
     
     public int LocationId { get; set; }
@@ -28,7 +30,7 @@ public class GetCarByIdQueryResult
     
     public bool IsAvailable { get; set; }
     
-    public int Transmission { get; set; }
+    public string Transmission { get; set; }
     
     public int CategoryId { get; set; }
     
