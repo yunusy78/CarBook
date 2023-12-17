@@ -47,6 +47,8 @@ public class ServiceApiSettings
     
     public ServiceApi CarFeature { get; set; }
     
+    public ServiceApi Statistic { get; set; }
+    
 }
 
 

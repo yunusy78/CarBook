@@ -1,8 +1,150 @@
-﻿@model dynamic
+﻿@model CarBook.WebUI.Areas.Admin.Models.AdminDashboardViewModel
 
 @{
     ViewBag.Title = "title";
     Layout = "_AdminLayout";
 }
 
-<h2>title</h2>
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Bil</span>
+                    <h5 class="card-title mb-0 text-white">Antall Bil</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.CarCount
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Merke</span>
+                    <h5 class="card-title mb-0 text-white">Antall Merke</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.BrandCount
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Blogg</span>
+                    <h5 class="card-title mb-0 text-white">Antall Blogg</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.BlogCount
+                        </h2>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> <!-- end col-->
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Forfatter</span>
+                    <h5 class="card-title mb-0 text-white">Antall Forfatter</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.AuthorCount
+                        </h2>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> <!-- end col-->
+    
+    <div class="col-md-6 col-xl-3">
+            <div class="card bg-primary border-primary">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <span class="badge badge-soft-light float-right">Bil</span>
+                        <h5 class="card-title mb-0 text-white">Høyeste Pris Model</h5>
+                    </div>
+                    <div class="row d-flex align-items-center mb-4">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0 text-white">
+                                @Model.HighestPriceCar
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col-->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-success border-success">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <span class="badge badge-soft-light float-right">Bil</span>
+                        <h5 class="card-title mb-0 text-white">Laveste Pris Model</h5>
+                    </div>
+                    <div class="row d-flex align-items-center mb-4">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center text-white mb-0">
+                                @Model.LowestPriceCar
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col-->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-warning border-warning">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <span class="badge badge-soft-light float-right">Reservasjon</span>
+                        <h5 class="card-title mb-0 text-white">Minste Leiemodell</h5>
+                    </div>
+                    <div class="row d-flex align-items-center mb-4">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center text-white mb-0">
+                                @Model.MinRentedCarModel
+                            </h2>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> <!-- end col-->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-info border-info">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <span class="badge badge-soft-light float-right">Reservasjoner</span>
+                        <h5 class="card-title mb-0 text-white">Mest Leidemodell</h5>
+                    </div>
+                    <div class="row d-flex align-items-center mb-4">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center text-white mb-0">
+                                @Model.MostRentedCarModel
+                            </h2>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> <!-- end col-->
+</div>
