@@ -80,7 +80,6 @@
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Data\" />
-      <Folder Include="Areas\Admin\Models\" />
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\Components\" />
       <Folder Include="wwwroot\ImageFile\About\" />

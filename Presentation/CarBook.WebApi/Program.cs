@@ -1,5 +1,7 @@
 using System.Globalization;
 using System.Text;
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using CarBook.Application.Features.CQRS.Handlers.About;
 using CarBook.Application.Features.CQRS.Handlers.BannerHandlers;
 using CarBook.Application.Features.CQRS.Handlers.BrandHandlers;
@@ -69,6 +71,9 @@ builder.Services.AddScoped<DeleteCategoryCommandHandler>();
 
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
+
+builder.Services.AddScoped<IStatisticService, StatisticManager>();
+builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
 
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
