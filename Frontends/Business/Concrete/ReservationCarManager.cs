@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Business.Abstract;
 using CarBook.Dto.Dtos.ReservationDto;
@@ -73,18 +74,32 @@ public class ReservationCarManager : IReservationService
         return null;
     }
 
-    public async Task<bool> CreateReservationAsync(CreateReservationDto dto)
+    public async Task<bool> CreateReservationAsync(CreateReservationDto dto, string accessToken)
     {
         var client = _httpClientFactory.CreateClient();
         var serviceApiSettings = _configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-        var response = await client.PostAsJsonAsync($"{serviceApiSettings!.BaseUri}/{serviceApiSettings.ReservationCar.Path}", dto);
+
+        // HTTP isteği oluştur
+        var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceApiSettings!.BaseUri}/{serviceApiSettings.ReservationCar.Path}");
+
+        // Access token'ı Authorization başlığına ekle
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        // İsteği JSON içeriğiyle birlikte gönder
+        request.Content = JsonContent.Create(dto);
+
+        // İsteği gönder ve yanıtı al
+        var response = await client.SendAsync(request);
+
+        // Yanıtı işle
         if (response.IsSuccessStatusCode)
         {
             return true;
         }
+
         return false;
-        
     }
+
 
     public async Task<bool> UpdateReservationAsync(UpdateReservationDto dto)
     {

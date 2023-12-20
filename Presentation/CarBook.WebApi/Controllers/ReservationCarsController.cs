@@ -1,6 +1,7 @@
 
 using CarBook.Application.Interfaces;
 using CarBook.Dto.Dtos.ReservationDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebApi.Controllers
@@ -41,6 +42,9 @@ namespace CarBook.WebApi.Controllers
             return Ok(result);
         }
         
+        
+        
+        [Authorize]
         [HttpPost]
         
         public async Task<IActionResult> Create(CreateReservationDto request)

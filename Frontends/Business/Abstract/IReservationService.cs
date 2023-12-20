@@ -6,7 +6,7 @@ namespace Business.Abstract;
 public interface IReservationService : IGenericService<GetReservationCarDto>
 {
     
-    Task <bool> CreateReservationAsync(CreateReservationDto dto);
+    public Task<bool> CreateReservationAsync(CreateReservationDto dto, string accessToken);
     Task <bool> UpdateReservationAsync(UpdateReservationDto dto);
     Task <List <GetReservationCarDto>> GetReservationCarWithCarAndLocationAndStatusAndPricingAsync();
     Task<List<GetReservationCarDto>>  GetByFilterAsync(Expression<Func<GetReservationCarDto, bool>> filter);

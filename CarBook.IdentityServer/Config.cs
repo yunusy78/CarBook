@@ -11,11 +11,12 @@ namespace CarBook.IdentityServer
 
 
         public static IEnumerable<IdentityResource> IdentityResources =>
-            new List<IdentityResource>
+            new IdentityResource[]
             {
-                new IdentityResources.OpenId(),
                 new IdentityResources.Email(),
+                new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResource(){Name="roles",DisplayName="Roles",Description="User Roles",UserClaims=new []{"role"}}
             };
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
@@ -27,7 +28,7 @@ namespace CarBook.IdentityServer
             };
 
         public static IEnumerable<Client> Cleints => 
-       new List<Client>
+            new List<Client>
             {
                 new Client
                 {
@@ -39,16 +40,21 @@ namespace CarBook.IdentityServer
                 new Client
                 {
                     ClientId = "magic",
+                    AllowOfflineAccess = true,
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes = { "magic",
+                        IdentityServerConstants.LocalApi.ScopeName,
+                        IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        JwtClaimTypes.Role
-                    },
-                    RedirectUris={ "https://localhost:7002/signin-oidc" },
-                    PostLogoutRedirectUris={"https://localhost:7002/signout-callback-oidc" },
+                        IdentityServerConstants.StandardScopes.OfflineAccess,"roles"},
+                        AccessTokenLifetime = 1*60*60,
+                        RefreshTokenExpiration = TokenExpiration.Absolute,
+                        AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+                        RefreshTokenUsage = TokenUsage.ReUse,
+                    RedirectUris={ "https://localhost:7157/signin-oidc" },
+                    PostLogoutRedirectUris={"https://localhost:7157/signout-callback-oidc" },
                 }
             };
     }
