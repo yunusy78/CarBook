@@ -90,7 +90,7 @@ builder.Services.AddAuthentication(x =>
     .AddJwtBearer(x => {
         x.RequireHttpsMetadata = false;
         x.SaveToken = true;
-        x.Authority = "https://localhost:5055/";
+        x.Authority = builder.Configuration["ApiSettings:IdentityServerAPI"];
         x.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
@@ -99,7 +99,7 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = false
         };
     });
-    
+
 builder.Services.AddControllers(option => {
     option.CacheProfiles.Add("Default30",
         new CacheProfile()

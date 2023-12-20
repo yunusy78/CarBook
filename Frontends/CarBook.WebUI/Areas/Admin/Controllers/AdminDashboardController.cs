@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using CarBook.WebUI.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize]
 public class AdminDashboardController : Controller
 {
     private readonly IStatisticService _statisticService;

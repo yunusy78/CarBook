@@ -11,8 +11,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UI.Pages;
+using UI.Pages.Login;
 
-namespace UI.Pages.Login;
+namespace CarBook.IdentityServer.Pages.Account.Login;
 
 [SecurityHeaders]
 [AllowAnonymous]

@@ -2,6 +2,7 @@
 
 public class ServiceApiSettings
 {
+    public string IdentityServerAPI { get; set; }
     public string BaseUri { get; set; }
     
     public ServiceApi About { get; set; }

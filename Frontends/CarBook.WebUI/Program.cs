@@ -3,6 +3,10 @@ using Business.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CarBook.WebUI.Data;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,9 +40,55 @@ builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
 builder.Services.AddScoped<IReservationService, ReservationCarManager>();
 builder.Services.AddScoped<ICarFeatureService, CarFeatureManager>();
 builder.Services.AddScoped<IStatisticService, StatisticManager>();
+builder.Services.AddScoped<IUserService, UserManager>();
+builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddHttpClient<IAuthService, AuthManager>();
+builder.Services.AddScoped<IAuthService, AuthManager>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddAuthentication
+    (options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = "oidc";
+    })
+    
+           .AddCookie(options =>
+              {
+                  options.LogoutPath = "/" + builder.Configuration["ServiceApiSettings:LogoutPath"];
+                  options.Cookie.HttpOnly = true;
+                  options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                  options.LoginPath = "/Auth/Login";
+                  options.AccessDeniedPath = "/Auth/AccessDenied";
+                  options.SlidingExpiration = true;
+              }).AddOpenIdConnect("oidc", options => {
+                  options.Authority = builder.Configuration["ServiceApiSettings:IdentityServerAPI"];
+                  options.GetClaimsFromUserInfoEndpoint = true;
+                  options.ClientId = "magic";
+                  options.ClientSecret = "secret";
+                  options.ResponseType = "code";
+                  options.TokenValidationParameters.NameClaimType = "name";
+                  options.TokenValidationParameters.RoleClaimType = "role";
+                  options.Scope.Add("magic");
+                  options.SaveTokens = true;
+                  options.ClaimActions.MapJsonKey("role", "role");
+                  options.Events = new OpenIdConnectEvents
+                  {
+                      OnRemoteFailure = context =>
+                      {
+                          context.Response.Redirect("/");
+                          context.HandleResponse();
+                          return Task.FromResult(0);
+                      }
+                  };
+              }); 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -59,13 +109,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Default}/{action=Index}/{id?}");
-app.MapRazorPages();
+
 
 app.UseEndpoints(endpoints =>
 {
