@@ -63,48 +63,30 @@ Feel free to connect and share your thoughts! Thank you for being part of this e
 
 ![DDD](Frontends/CarBook.WebUI/wwwroot/CarBook/admindashboard.png)
 
-![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/api.png)
+![api](Frontends/CarBook.WebUI/wwwroot/CarBook/api.png)
 
 
-![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/blog.png)
+![blo](Frontends/CarBook.WebUI/wwwroot/CarBook/blog.png)
 
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/cart_1.png)
+![blog](Frontends/CarBook.WebUI/wwwroot/CarBook/blog2.png)
 
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/cart_2.png)
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/car.png)
 
-![DDD](frontents/OnlineStudyWeb/wwwroot/Project/chart1.png)
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/cardetaljer1.png)
 
-![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/chart2.png)
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/chart)
 
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/chart(2).png)
 
-![MVC](frontents/OnlineStudyWeb/wwwroot/Project/contact2.png)
+![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/identityserver.png)
 
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/course_index_1.png)
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/kode.png)
 
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/dashboard.png)
+![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/price.png)
 
-![DDD](frontents/OnlineStudyWeb/wwwroot/Project/docker.png)
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/homepage.png)
 
-![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/docker2.png)
+![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/comment.png)
 
+![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/funksjon.png)
 
-![MVC](frontents/OnlineStudyWeb/wwwroot/Project/experlærer.png)
-
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/instructor.png)
-
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/login.png)
-
-![DDD](frontents/OnlineStudyWeb/wwwroot/Project/payment.png)
-
-![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/product_detail.png)
-
-
-
-![MVC](frontents/OnlineStudyWeb/wwwroot/Project/register.png)
-
-![Database](frontents/OnlineStudyWeb/wwwroot/Project/search.png)
-
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/CQRS.jpg)
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/ddd.jpg)
-
-![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/UnitTesting&IntegrationTesting.png)
