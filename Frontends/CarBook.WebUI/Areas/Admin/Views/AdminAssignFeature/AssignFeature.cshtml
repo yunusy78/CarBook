@@ -1,0 +1,37 @@
+﻿@model List<CarBook.WebUI.Areas.Admin.Models.FeatureAssignModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <h2 class="my-4">Tildel Funksjoner</h2>
+    <form method="post" class="role-form">
+        @for(int i = 0; i < Model.Count; i++)
+        {
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="hidden" asp-for="@Model[i].FeatureId" />
+                <input type="hidden" asp-for="@Model[i].Name" />
+                <input type="checkbox" class="custom-control-input" asp-for="@Model[i].IsAvailable" id="role-@i" />
+                <label class="custom-control-label" for="role-@i">@Model[i].Name</label>
+            </div>
+        }
+        <button type="submit" class="btn btn-primary mt-3"> <i class="bx bx-save"></i> Lagre </button>
+    </form>
+</div>
+
+<style>
+    .role-form {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-checkbox .custom-control-label::before,
+    .custom-checkbox .custom-control-label::after {
+        border-radius: 5px;
+    }
+</style>
+

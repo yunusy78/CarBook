@@ -41,13 +41,12 @@
                              @foreach (var item2 in @item.PricingData)
                              {
 	                             <td class="price">
-		                             <p class="btn-custom"><a href="#">Leie ut Bil</a></p>
+		                             <p class="btn-custom"><a href="/Car/Details/@item.CarId">Detaljer</a></p>
 		                             <div class="price-rate">
 			                             <h3>
 				                            <span>NOK</span><span class="num"><small class="currency"></small> @item2.Value</span>
 				                             <span class="per">@item2.Key</span>
 			                             </h3>
-			                             <span class="subheading">NOK 3/timepris drivstoffavgift</span>
 		                             </div>
 	                             </td>
                              } 

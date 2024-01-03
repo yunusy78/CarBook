@@ -42,7 +42,7 @@ public class CarFeatureRepository : ICarFeatureRepository
 
     public async Task DeleteAsync(CarFeature entity)
     {
-        var carFeature = await _dbContext.CarFeatures.FindAsync(entity.CarId);
+        var carFeature = await _dbContext.CarFeatures.FindAsync(entity.CarFeatureId);
         _dbContext.CarFeatures.Remove(carFeature!);
         await _dbContext.SaveChangesAsync();
         

@@ -55,7 +55,7 @@ namespace CarBook.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFeature(int id)
         {
-            await _carFeatureRepository.DeleteAsync(new CarFeature{CarId = id});
+            await _carFeatureRepository.DeleteAsync(new CarFeature{CarFeatureId = id});
             return Ok("Feature Deleted Successfully");
         }
         

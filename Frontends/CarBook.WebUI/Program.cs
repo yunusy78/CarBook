@@ -43,6 +43,8 @@ builder.Services.AddScoped<IStatisticService, StatisticManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<ISharedIdentity, SharedIdentity>();
 
+builder.Services.AddScoped<IOrderService, OrderManager>();
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHttpClient<IAuthService, AuthManager>();
 builder.Services.AddScoped<IAuthService, AuthManager>();
@@ -69,6 +71,7 @@ builder.Services.AddAuthentication
                   options.ClientSecret = "secret";
                   options.ResponseType = "code";
                   options.TokenValidationParameters.NameClaimType = "name";
+                  options.TokenValidationParameters.NameClaimType = "email";
                   options.TokenValidationParameters.RoleClaimType = "role";
                   options.Scope.Add("magic");
                   options.SaveTokens = true;
@@ -79,10 +82,11 @@ builder.Services.AddAuthentication
                       {
                           context.Response.Redirect("/");
                           context.HandleResponse();
-                          return Task.FromResult(0);
+                          return Task.CompletedTask;
                       }
                   };
               }); 
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(100);

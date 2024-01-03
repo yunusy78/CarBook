@@ -251,8 +251,9 @@ namespace CarBook.Persistence.Migrations
                     b.Property<byte>("Seats")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("Transmission")
-                        .HasColumnType("int");
+                    b.Property<string>("Transmission")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -532,6 +533,58 @@ namespace CarBook.Persistence.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("CarBook.Domain.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentIntentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("CarBook.Domain.Entities.Pricing", b =>
                 {
                     b.Property<int>("PricingId")
@@ -600,6 +653,10 @@ namespace CarBook.Persistence.Migrations
                     b.HasIndex("CarId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("DropOffLocationId");
+
+                    b.HasIndex("PickUpLocationId");
 
                     b.ToTable("ReservationCars");
                 });
@@ -811,6 +868,17 @@ namespace CarBook.Persistence.Migrations
                     b.Navigation("Blog");
                 });
 
+            modelBuilder.Entity("CarBook.Domain.Entities.Order", b =>
+                {
+                    b.HasOne("CarBook.Domain.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("CarBook.Domain.Entities.ReservationCar", b =>
                 {
                     b.HasOne("CarBook.Domain.Entities.Car", "Car")
@@ -825,9 +893,23 @@ namespace CarBook.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarBook.Domain.Entities.Location", "DropOffLocation")
+                        .WithMany("DropOffRentACars")
+                        .HasForeignKey("DropOffLocationId")
+                        .IsRequired();
+
+                    b.HasOne("CarBook.Domain.Entities.Location", "PickUpLocation")
+                        .WithMany("PickUpRentACars")
+                        .HasForeignKey("PickUpLocationId")
+                        .IsRequired();
+
                     b.Navigation("Car");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("DropOffLocation");
+
+                    b.Navigation("PickUpLocation");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.TagCloud", b =>
@@ -880,6 +962,10 @@ namespace CarBook.Persistence.Migrations
             modelBuilder.Entity("CarBook.Domain.Entities.Location", b =>
                 {
                     b.Navigation("Cars");
+
+                    b.Navigation("DropOffRentACars");
+
+                    b.Navigation("PickUpRentACars");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Pricing", b =>

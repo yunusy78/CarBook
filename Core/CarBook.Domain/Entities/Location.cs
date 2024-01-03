@@ -9,6 +9,10 @@ public class Location
     
     public List<Car> Cars { get; set; }
     
+    public List<ReservationCar> PickUpRentACars { get; set; }
+    
+    public List<ReservationCar> DropOffRentACars { get; set; }
+    
    
   
     

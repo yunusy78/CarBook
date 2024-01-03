@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Business.Abstract;
 using CarBook.Dto.Dtos.CarDto;
+using CarBook.Dto.Dtos.Order;
 using CarBook.Dto.Dtos.ReservationDto;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -16,13 +17,16 @@ public class ReservationCarController : Controller
     private readonly ICarService _carService;
     private readonly ILocationService _locationService;
     private readonly ISharedIdentity _sharedIdentity;
+    private readonly IOrderService _orderService;
+   
     
-    public ReservationCarController(IReservationService reservationService, ICarService carService, ILocationService locationService, ISharedIdentity sharedIdentity)
+    public ReservationCarController(IReservationService reservationService, ICarService carService, ILocationService locationService, ISharedIdentity sharedIdentity, IOrderService orderService)
     {
         _reservationService = reservationService;
         _carService = carService;
         _locationService = locationService;
         _sharedIdentity = sharedIdentity;
+        _orderService = orderService;
     }
     
     
@@ -91,6 +95,65 @@ public class ReservationCarController : Controller
         
         return View();
     }
+    
+    [Authorize]
+           public async Task<IActionResult> Checkout()
+           {
+               var user = await LoadCartDtoBasedOnLoggedInUser();
+               return View(user);
+           }
+        
+           [Authorize]
+           [HttpPost]
+           public async Task<IActionResult> Checkout(StripeRequestDto dto)
+           {
+               var accessToken = await HttpContext.GetTokenAsync("access_token");
+               var response = await _orderService.Checkout(dto, accessToken!);
+               if (response.IsSuccess)
+               {
+                   return RedirectToAction("Index", "Home");
+               }
+        
+               return View();
+           }
+           
+           private async Task<UserDto> LoadCartDtoBasedOnLoggedInUser()
+           {
+               var accessToken = await HttpContext.GetTokenAsync("access_token");
+        
+            // ID token'ı çözerek içeriğini kontrol etme
+               var handler = new JwtSecurityTokenHandler();
+               var jsonToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+        
+             // ID token içeriğini inceleme
+               if (jsonToken != null)
+               {
+                   // sub alanından kullanıcı kimliğini alın
+                   string userId = jsonToken.Subject;
+        
+                   // Diğer bilgileri almak için gerekli alanlara erişim sağlayabilirsiniz
+                   // Örneğin, kullanıcının adını almak için jsonToken.Claims'den "name" alanını arayabilirsiniz
+        
+                   // Örneğin, kullanıcının e-posta adresini almak için jsonToken.Claims'den "email" alanını arayabilirsiniz
+                   string userEmail = jsonToken.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
+        
+                   // Örneğin, kullanıcının ID'sini almak için jsonToken.Claims'den "id" alanını arayabilirsiniz
+                   string userIdentityName = jsonToken.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+        
+                   // Elde ettiğiniz bilgileri kullanabilirsiniz
+                   // ...
+                   var user = new UserDto
+                   {
+                       Email = userEmail,
+                       UserId = userId,
+                       Name = userIdentityName
+                   };
+                   return user;
+               }
+        
+               return null;
+        
+           }
     
     
     

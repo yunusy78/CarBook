@@ -12,6 +12,7 @@ using CarBook.Application.Features.RepositoryPattern;
 using CarBook.Application.Interfaces;
 using CarBook.Application.Services;
 using CarBook.Domain.Entities;
+using CarBook.Domain.Service;
 using CarBook.Persistence.Context;
 using CarBook.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NuGet.Protocol.Core.Types;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<CarBookDbContext>();
@@ -69,12 +71,16 @@ builder.Services.AddScoped<CreateCategoryCommandHandler>();
 builder.Services.AddScoped<UpdateCategoryCommandHandler>();
 builder.Services.AddScoped<DeleteCategoryCommandHandler>();
 
+builder.Services.AddScoped<IOrderService, OrderManager>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 
 builder.Services.AddScoped<IStatisticService, StatisticManager>();
 builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
-
+builder.Services.Configure<StripeService>(builder.Configuration.GetSection("Stripe"));
+StripeConfiguration.ApiKey =builder.Configuration["Stripe:SecretKey"];
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
 // Add services to the container.

@@ -97,7 +97,9 @@ public class ReservationCarRepository : IReservationCarRepository
 
     public async Task<List<ReservationCar>> GetAllAsync()
     {
-        var result = await _context.ReservationCars.ToListAsync();
+        var result = await _context.ReservationCars
+            .Include(x => x.Car)
+            .ToListAsync();
         return result;
     }
 

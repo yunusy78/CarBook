@@ -18,21 +18,21 @@ public class CarBookDbContext : DbContext
    
    
    
-   /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+   protected override void OnModelCreating(ModelBuilder modelBuilder)
    {
        base.OnModelCreating(modelBuilder);
-       modelBuilder.Entity<CarReservation>()
+       modelBuilder.Entity<ReservationCar>()
            .HasOne(x=>x.PickUpLocation)
            .WithMany(x=>x.PickUpRentACars)
            .HasForeignKey(x=>x.PickUpLocationId)
            .OnDelete(DeleteBehavior.ClientSetNull);
-       modelBuilder.Entity<CarReservation>()
+       modelBuilder.Entity<ReservationCar>()
            .HasOne(x=>x.DropOffLocation)
            .WithMany(x=>x.DropOffRentACars)
            .HasForeignKey(x=>x.DropOffLocationId)
            .OnDelete(DeleteBehavior.ClientSetNull);
         
-   }*/
+   }
 
     public DbSet<Car> Cars { get; set; }
     public DbSet<Brand> Brands { get; set; }
@@ -60,6 +60,8 @@ public class CarBookDbContext : DbContext
     public DbSet<TagCloud> TagClouds { get; set; }
     
     public DbSet<Comment> Comments { get; set; }
+    
+    public DbSet<Order> Orders { get; set; }
     
     
     public DbSet<ReservationCar> ReservationCars { get; set; }
