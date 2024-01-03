@@ -1,7 +1,5 @@
 # Carbook Project
 
-![Project Banner](images/banner.jpg)
-
 ## Overview
 
 Welcome to the Carbook project! This repository documents my journey through the Carbook Udemy course under the expert guidance of Murat Yücedağ. The course, developed using ASP.NET Core API 8.0, follows the principles of Onion Architecture, providing a comprehensive understanding of modern web development.
@@ -55,3 +53,58 @@ Having completed this project, I am now diving into Murat Yücedağ's Udemy cour
 For those interested, the project's source code is easily accessible on [GitHub](https://lnkd.in/dcWQVx72).
 
 Feel free to connect and share your thoughts! Thank you for being part of this exciting journey! 🚀💻 #CarbookProject #SoftwareDevelopment #ContinuousLearning
+
+
+## Images
+
+![Dashboard](Frontends/CarBook.WebUI/wwwroot/CarBook/admin.png))
+
+![Microservices](Frontends/CarBook.WebUI/wwwroot/CarBook/admincar.png)
+
+![DDD](Frontends/CarBook.WebUI/wwwroot/CarBook/admindashboard.png)
+
+![IdentityServer](Frontends/CarBook.WebUI/wwwroot/CarBook/api.png)
+
+
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/blog.png)
+
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/cart_1.png)
+
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/cart_2.png)
+
+![DDD](frontents/OnlineStudyWeb/wwwroot/Project/chart1.png)
+
+![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/chart2.png)
+
+
+![MVC](frontents/OnlineStudyWeb/wwwroot/Project/contact2.png)
+
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/course_index_1.png)
+
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/dashboard.png)
+
+![DDD](frontents/OnlineStudyWeb/wwwroot/Project/docker.png)
+
+![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/docker2.png)
+
+
+![MVC](frontents/OnlineStudyWeb/wwwroot/Project/experlærer.png)
+
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/instructor.png)
+
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/login.png)
+
+![DDD](frontents/OnlineStudyWeb/wwwroot/Project/payment.png)
+
+![IdentityServer](frontents/OnlineStudyWeb/wwwroot/Project/product_detail.png)
+
+
+
+![MVC](frontents/OnlineStudyWeb/wwwroot/Project/register.png)
+
+![Database](frontents/OnlineStudyWeb/wwwroot/Project/search.png)
+
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/CQRS.jpg)
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/ddd.jpg)
+
+![Microservices](frontents/OnlineStudyWeb/wwwroot/Project/UnitTesting&IntegrationTesting.png)
