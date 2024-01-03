@@ -149,100 +149,201 @@
     </div> <!-- end col-->
 </div>
 
- <div class="row">
+<div class="row">
 
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-right position-relative">
-                                        <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                    </div>
-                                    <h4 class="card-title d-inline-block">Statistik</h4>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="dropdown float-right position-relative">
+                    <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical"></i>
+                    </a>
+                </div>
+                <h4 class="card-title d-inline-block">Daglig inntekt etter ukedag</h4>
 
-                                    <div id="morris-bar-example" class="morris-chart" style="height: 260px;"></div>
+                <div id="revenueDailyChart" class="morris-chart" style="height: 260px;"></div>
 
-                                    <div class="row text-center mt-4">
-                                        <div class="col-6">
-                                            <h4>$1875.54</h4>
-                                            <p class="text-muted mb-0">Revenue</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h4>541</h4>
-                                            <p class="text-muted mb-0">Total Offers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-right position-relative">
-                                        <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item">Action</a></li>
-                                            <li><a href="#" class="dropdown-item">Another action</a></li>
-                                            <li><a href="#" class="dropdown-item">Something else here</a></li>
-                                            <li class="dropdown-divider"></li>
-                                            <li><a href="#" class="dropdown-item">Separated link</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="card-title d-inline-block">Daily Sales</h4>
-
-                                    <div id="morris-donut-example" class="morris-chart" style="height: 260px;"></div>
-
-                                    <div class="row text-center mt-4">
-                                        <div class="col-6">
-                                            <h4>5,459</h4>
-                                            <p class="text-muted mb-0">Total Sales</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h4>18</h4>
-                                            <p class="text-muted mb-0">Open Compaign</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-right position-relative">
-                                        <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item">Action</a></li>
-                                            <li><a href="#" class="dropdown-item">Another action</a></li>
-                                            <li><a href="#" class="dropdown-item">Something else here</a></li>
-                                            <li class="dropdown-divider"></li>
-                                            <li><a href="#" class="dropdown-item">Separated link</a></li>
-                                        </ul>
-                                    </div>
-                                    <h4 class="card-title d-inline-block">Total Revenue</h4>
-
-                                    <div id="morris-line-example" class="morris-chart" style="height: 260px;"></div>
-
-                                    <div class="row text-center mt-4">
-                                        <div class="col-6">
-                                            <h4>$7841.12</h4>
-                                            <p class="text-muted mb-0">Total Revenue</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h4>17</h4>
-                                            <p class="text-muted mb-0">Open Compaign</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
+                <div class="row text-center mt-4">
+                    <div class="col-6">
+                        <h4></h4>
                     </div>
+                    <div class="col-6">
+                        <h4></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="dropdown float-right position-relative">
+                    <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical"></i>
+                    </a>
+                </div>
+                <h4 class="card-title d-inline-block">Daglig salg</h4>
+
+                <div id="chartDiv1" class="morris-chart" style="height: 260px;"></div>
+
+                <div class="row text-center mt-4">
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="dropdown float-right position-relative">
+                    <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
+                       aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical"></i>
+                    </a>
+                </div>
+                <h4 class="card-title d-inline-block">Månedlig inntekt</h4>
+
+                <div id="revenueChart" class="morris-chart" style="height: 260px;"></div>
+
+                <div class="row text-center mt-4">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!-- Grafik için bir yer belirliyoruz -->
+<div style="float: left; width: 100%; height: 600px;">
+    <div  style="width: 100%; height: 100%;"></div>
+</div>
+    <div style="clear: both;"></div>
+
+
+
+<script type="text/javascript">
+        // Sayfa yüklendiğinde grafik oluşturmak için bu fonksiyonu çağırıyoruz
+        google.charts.load('current', {'packages' : ['corechart'] });
+        google.charts.setOnLoadCallback(DrawPieChart1);
+
+        function DrawPieChart1(){
+            // AJAX ile verileri alıyoruz (örnek olarak bir dizi kullanıyoruz)
+            $.ajax({
+                 type: "GET",
+                 url: "/Admin/Chart/DailyChart/",
+                 success: function(chartsdata) {
+                   var jsonData = chartsdata.jsonlist;
+                     console.log(jsonData);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'name');
+            data.addColumn('number','count');
+
+           
+            for (var i = 0; i < jsonData.length; i++){
+                data.addRow([jsonData[i].name, jsonData[i].count]);
+            }
+
+            var options = {
+                pieHole: 0.4,
+                position: "top",
+                fontSize: "16px"
+            };
+
+         
+            var chart = new google.visualization.PieChart(document.getElementById('chartDiv1'));
+            chart.draw(data, options);
+        }
+    });
+}
+
+ google.charts.load('current', { 'packages': ['corechart'] });
+ google.charts.setOnLoadCallback(drawChart2);
+ 
+ function drawChart2() {
+     $.ajax({
+         url: '/Admin/Chart/RevenueChart',
+         type: 'GET',
+         dataType: 'json',
+         success: function (data) {
+             var months = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"];
+
+             var chartData = [['Months', 'Inntekt']];
+             for (var i = 0; i < data.months.length; i++) {
+                 var monthIndex = data.months[i] - 1;
+                 chartData.push([months[monthIndex], data.revenues[i]]);
+             }
+ 
+             var dataTable = google.visualization.arrayToDataTable(chartData);
+ 
+             var options = {
+                 hAxis: { title: 'Måned', titleTextStyle: { color: '#333' } },
+                 vAxis: { minValue: 0 },
+                 curveType: 'function', // Add this line for a smoother line chart
+             };
+ 
+             var chart = new google.visualization.LineChart(document.getElementById('revenueChart'));
+             chart.draw(dataTable, options);
+         }
+     });
+ }
+ 
+ 
+ 
+ 
+ google.charts.load('current', { 'packages': ['corechart'] });
+ google.charts.setOnLoadCallback(drawChart3);
+ 
+ function drawChart3() {
+     $.ajax({
+         url: '/Admin/Chart/RevenueDailyChart',
+         type: 'GET',
+         dataType: 'json',
+         success: function (data) {
+             var daysOfWeek = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag","Lørdag"];
+             var chartData = [['DayOfWeek', 'Inntekt', { role: 'style' }]];
+ 
+             for (var i = 0; i < data.dayOfWeek.length; i++) {
+                 var randomColor = getRandomColor();
+                 var dayIndex = data.dayOfWeek[i];
+                 chartData.push([daysOfWeek[dayIndex], data.revenues[i], randomColor]);
+             }
+ 
+             var dataTable = google.visualization.arrayToDataTable(chartData);
+ 
+             var options = {
+                 title: '',
+                 hAxis: { title: 'Ukedag', titleTextStyle: { color: '#333' } },
+                 vAxis: { minValue: 0 }
+             };
+ 
+             var chart = new google.visualization.ColumnChart(document.getElementById('revenueDailyChart'));
+             chart.draw(dataTable, options);
+         }
+     });
+ }
+ 
+ function getRandomColor() {
+     var letters = '0123456789ABCDEF';
+     var color = '#';
+     for (var i = 0; i < 6; i++) {
+         color += letters[Math.floor(Math.random() * 16)];
+     }
+     return color;
+ }
+
+
+
+    </script>
+
+

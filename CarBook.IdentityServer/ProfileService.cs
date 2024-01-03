@@ -36,6 +36,7 @@ namespace CarBook.IdentityServer
             List<Claim> claims = userClaims.Claims.ToList();
             claims = claims.Where(u => context.RequestedClaimTypes.Contains(u.Type)).ToList();
             claims.Add(new Claim(JwtClaimTypes.Name, user.Name));
+            claims.Add(new Claim(JwtClaimTypes.Email, user.Email!));
             if (_userMgr.SupportsUserRole)
             {
                 IList<string> roles = await _userMgr.GetRolesAsync(user);

@@ -7,6 +7,11 @@ public class ReservationCar
     public Car Car { get; set; }
     public int PickUpLocationId { get; set; }
     public int DropOffLocationId { get; set; }
+    
+    public Location PickUpLocation { get; set; }
+    
+    public Location DropOffLocation { get; set; }
+    
     public DateOnly PickUpDate { get; set; }
     public DateOnly DropOffDate { get; set; }
     public TimeOnly PickUpTime { get; set; }

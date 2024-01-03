@@ -87,6 +87,7 @@
       <Folder Include="Areas\Admin\Data\" />
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\Components\" />
+      <Folder Include="Views\Order\" />
       <Folder Include="wwwroot\ImageFile\About\" />
       <Folder Include="wwwroot\ImageFile\Author\" />
       <Folder Include="wwwroot\ImageFile\Banner\" />

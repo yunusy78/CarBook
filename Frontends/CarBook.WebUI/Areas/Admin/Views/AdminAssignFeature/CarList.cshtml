@@ -1,0 +1,58 @@
+﻿@model List<CarBook.Dto.Dtos.CarDto.CarDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+    int i=0;
+}
+
+
+<div class="table-responsive text-nowrap">
+</div>
+
+<div class="card">
+    <h3 class="card-header" style="text-align: center;"> Våre Biler</h3>
+    <div class="table-responsive text-nowrap">
+      
+        
+            <table class="table">
+                <thead class="table-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>Merke</th>
+                    <th>Model</th>
+                    <th>År</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @{i =  i + 1;}
+                        <td>@i</td>
+                        <td>@item.CarId</td>
+                        <td><strong>@item.BrandName</strong></td>
+                        <td><strong>@item.Model</strong></td>
+                        <td><strong>@item.Year</strong></td>
+                       
+                        <td>
+                            <a class="btn btn-outline-warning" href="/Admin/AdminAssignFeature/AssignFeature/@item.CarId"><i class="bx bx-edit-alt me-1 text-warning"></i> Tildel Funksjoner</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        <button class="btn btn-primary" onclick="goBack()"><i class="bx bx-arrow-back"></i> Tilbake</button>
+        <br/>
+    </div>
+</div>
+
+<script>
+    function showDeleteConfirmation(id) {
+        if (confirm("Er du sikker på at du vil slette dette?")) {
+            window.location.href = "/Admin/AdminAssignFeature/DeleteRole/" + id;
+        }
+    }
+</script>

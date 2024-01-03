@@ -50,6 +50,8 @@ public class ServiceApiSettings
     
     public ServiceApi Statistic { get; set; }
     
+    public ServiceApi Order { get; set; }
+    
 }
 
 

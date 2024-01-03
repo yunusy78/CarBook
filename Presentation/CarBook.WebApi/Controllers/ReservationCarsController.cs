@@ -1,6 +1,10 @@
 
+using System.IdentityModel.Tokens.Jwt;
+using BusinessLayer.Abstract;
 using CarBook.Application.Interfaces;
+using CarBook.Dto.Dtos.Order;
 using CarBook.Dto.Dtos.ReservationDto;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +20,7 @@ namespace CarBook.WebApi.Controllers
         public ReservationCarsController(IReservationCarRepository reservationCarRepository)
         {
             _reservationCarRepository = reservationCarRepository;
+           
         }
         
         [HttpGet]
@@ -35,7 +40,6 @@ namespace CarBook.WebApi.Controllers
         }
         
         [HttpGet("{id}")]
-        
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _reservationCarRepository.GetByIdAsync(id);
@@ -81,9 +85,6 @@ namespace CarBook.WebApi.Controllers
             var cars = await _reservationCarRepository.GetByFilterAsync(x=>x.PickUpLocationId==locationId && x.Car.IsAvailable==true);
             return Ok(cars);
         }
-        
-        
-        
         
         
     }
