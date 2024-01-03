@@ -74,6 +74,8 @@ Feel free to connect and share your thoughts! Thank you for being part of this e
 
 ![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/cardetaljer1.png)
 
+![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/funksjon(2).png).
+
 ![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/chart)
 
 ![MVC](Frontends/CarBook.WebUI/wwwroot/CarBook/chart(2).png)
