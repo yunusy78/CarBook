@@ -7,7 +7,7 @@ Welcome to the Carbook project! This repository documents my journey through the
 ## Course Details
 
 - **Instructor:** Murat Yücedağ
-- **Course Link:** [Carbook Udemy Course](https://lnkd.in/dyJhCTaH)
+- **Course Link:** [Carbook Udemy Course](https://www.udemy.com/course/aspnet-core-api-8-onion-architecture-ile-bookcar-projesi/)
 
 ## Project Highlights
 
