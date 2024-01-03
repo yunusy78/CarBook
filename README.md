@@ -44,13 +44,8 @@ Welcome to the Carbook project! This repository documents my journey through the
 
 With the knowledge gained, the project is set to evolve further, exploring new features and improvements. Join me on this exciting journey of continuous learning and development!
 
-## Next Steps - SignalR Course
-
-Having completed this project, I am now diving into Murat Yücedağ's Udemy course, focusing on building a QR code-based ordering application for restaurants using SignalR.
 
 ## Accessing the Project
-
-For those interested, the project's source code is easily accessible on [GitHub](https://lnkd.in/dcWQVx72).
 
 Feel free to connect and share your thoughts! Thank you for being part of this exciting journey! 🚀💻 #CarbookProject #SoftwareDevelopment #ContinuousLearning
 
